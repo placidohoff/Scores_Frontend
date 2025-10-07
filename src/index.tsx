@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js"
 import "bootstrap-icons/font/bootstrap-icons.css"
+import { AuthProvider } from './Context/auth';
 
 
 const root = ReactDOM.createRoot(
@@ -13,9 +14,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 
