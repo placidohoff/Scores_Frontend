@@ -8,3 +8,15 @@ export const ROUTES = {
     VIEW_ROUND: "/view-round",
     VIEW_CARD_TOTAL: "/view-scorecard-total",
 }
+
+export const ENVIRONMENTS = {
+    DEV:"development",
+    WORK: "work_domain",
+    PROD: "production"
+}
+
+export const API_ROOTS = {
+    DEV: "https://localhost:44327/api/",
+    PROD: "",
+    WORK: "../Data/"
+}

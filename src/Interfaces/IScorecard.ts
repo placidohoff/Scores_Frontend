@@ -2,7 +2,7 @@ export interface IScorecard {
   scorecard_ID: number;
   boxingMatch_ID: number;
   user_ID: string;
-  ruling?: number; //number but will be "any" for now
+  ruling?: string; //number but will be "any" for now
   totalRoundsFought?: number; 
   fighterA_ScoreTotal?: number;
   fighterB_ScoreTotal?: number;

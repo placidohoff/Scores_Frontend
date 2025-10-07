@@ -2,6 +2,6 @@ export interface IFighter {
   fighter_ID: number;
   firstname: string;
   lastname: string;
-  matchesAsFighterA?: any;
-  matchesAsFighterB?: any;
+  matchesAsFighterA?: any; //NAVIGATION PROP?
+  matchesAsFighterB?: any; //NAVIGATION PROP?
 }

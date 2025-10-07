@@ -1,0 +1,12 @@
+[
+    {
+        "fighter_ID": 4,
+        "firstname": "Floyd",
+        "lastname": "Mayweather"
+    },
+    {
+        "fighter_ID": 5,
+        "firstname": "Manny",
+        "lastname": "Pacquiao"
+    }
+]
