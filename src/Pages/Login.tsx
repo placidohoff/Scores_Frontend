@@ -22,9 +22,10 @@ export default function Login() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const testGetFighters = await axios.get("../Data/Fighters.json");
+      const testGetFighters = await axios.get("../Data/Fighters.json");
       console.log(process.env.REACT_APP_ENVIRONMENT)
-      const testGetFighters = await axios.get(API_BASE_URL+"Fighters.json");
+      console.log(API_BASE_URL);
+      // const testGetFighters = await axios.get(API_BASE_URL+"fighters");
       return testGetFighters;
     }
 
@@ -40,8 +41,8 @@ export default function Login() {
     e.preventDefault();
     try{
       const res = await LoginSimulation({userName, password})
-      setToken(res.token);
-      localStorage.setItem("token", res.token);
+      // setToken(res.token);
+      // localStorage.setItem("token", res.token);
       alert("Login successful!");
     }catch(err: any){
       console.error(err)
@@ -53,11 +54,11 @@ export default function Login() {
     <div className="page-component">
       <div className="container">
         <div className="row">
-          <h2 className="my-5 mx-auto d-flex justify-content-center">
+          <h2 className="my-5 mx-auto justify-content-center">
             Login to your account
           </h2>
           <div className="col-md-6 offset-md-3">
-            <form onSubmit={handleSubmit} style={{ marginBottom: "100px" }}>
+            <form className='d-flex flex-column' onSubmit={handleSubmit} style={{ marginBottom: "100px" }}>
               {/* <label className="form-label">
                 Email:
                 <input
@@ -69,7 +70,7 @@ export default function Login() {
                 />
               </label> */}
 
-              <label className="form-label">
+              <label style={{textAlign: 'left'}} className="form-label">
                 Username:
                 <input
                   type="text"
@@ -80,7 +81,7 @@ export default function Login() {
                 />
               </label>
 
-              <label className="form-label">
+              <label style={{textAlign: 'left'}} className="form-label">
                 Password:
                 <input
                   type="password"

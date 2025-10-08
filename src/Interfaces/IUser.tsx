@@ -17,4 +17,14 @@ export interface IUser {
   lockoutEnd?: any;
   lockoutEnabled: boolean;
   accessFailedCount: number;
+  role: string;
+}
+
+export interface IUserTest{
+      id: string;
+      displayName: string;
+      userName: string; // mirror .NET mapping
+      email: string;
+      passwordHash: string;
+      role: string;
 }

@@ -18,5 +18,6 @@ export const ENVIRONMENTS = {
 export const API_ROOTS = {
     DEV: "https://localhost:44327/api/",
     PROD: "",
-    WORK: "../Data/"
+    WORK: "../Data/",
+    WORK_dep: "https://localhost:5000/api/"
 }
