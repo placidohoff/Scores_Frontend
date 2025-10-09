@@ -5,11 +5,13 @@ import { API_ROOTS, ENVIRONMENTS } from '../Utils/Constants';
 import axios from 'axios';
 import { Console } from 'console';
 import { LoginSimulation } from '../Utils/LoginSimulation';
+import { LoginLogic } from '../Utils/LoginLogic';
 
 export default function Login() {
-  const [auth, setAuth] = useAuth();
+  const {auth, setAuth} = useAuth();
   // const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
 
@@ -20,31 +22,44 @@ export default function Login() {
       ? API_ROOTS.PROD
       : API_ROOTS.WORK
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     const fetchData = async () => {
-      const testGetFighters = await axios.get("../Data/Fighters.json");
+      // const testGetFighters = await axios.get("../Data/Fighters.json");
       console.log(process.env.REACT_APP_ENVIRONMENT)
       console.log(API_BASE_URL);
-      // const testGetFighters = await axios.get(API_BASE_URL+"fighters");
+      const testGetFighters = await axios.get(API_BASE_URL + "fighter");
       return testGetFighters;
     }
 
-    const test = fetchData().then((res) => console.log(res.data));
+    console.log(API_BASE_URL);
 
-    // console.log(test);
+    const test = fetchData().then((res) => console.log(res.data.result));
+
+    console.log(test);
 
 
 
   }, [])
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try{
-      const res = await LoginSimulation({userName, password})
+    try {
+      // const res = await LoginSimulation({userName, password})
+      const res = await LoginLogic({ displayName, password })
       // setToken(res.token);
       // localStorage.setItem("token", res.token);
-      alert("Login successful!");
-    }catch(err: any){
+      localStorage.setItem("auth", JSON.stringify(res));
+      setAuth({ ...auth, token: res.token, user: res.displayName });
+
+      // navigate(
+      //     location.state ||
+      //       `/dashboard/${data?.user?.role === 1 ? "admin" : "user/profile"}`
+      //   );
+
+    } catch (err: any) {
       console.error(err)
     }
   }
@@ -70,18 +85,18 @@ export default function Login() {
                 />
               </label> */}
 
-              <label style={{textAlign: 'left'}} className="form-label">
+              <label style={{ textAlign: 'left' }} className="form-label">
                 Username:
                 <input
                   type="text"
                   className="form-control mb-4 p-2"
                   // placeholder="Email"
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
                 />
               </label>
 
-              <label style={{textAlign: 'left'}} className="form-label">
+              <label style={{ textAlign: 'left' }} className="form-label">
                 Password:
                 <input
                   type="password"

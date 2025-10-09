@@ -1,28 +1,51 @@
-import React from 'react'
+import React from "react";
+import { useAuth } from "../../Context/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const { logout } = useAuth(); // get logout from context
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();             // this clears auth + localStorage
+    navigate("/login");   // redirect to login page
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand mx-3" href="#">Majority Decision</a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a className="navbar-brand mx-3" href="#">
+        Majority Decision
+      </a>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <a className="nav-link" href="/">Home {/*<span className="sr-only">(current)</span>*/}</a>
+            <a className="nav-link" href="/">
+              Home
+            </a>
           </li>
           <li className="nav-item mx-5">
-            <a className="nav-link" href="/login">Login</a>
+            <a className="nav-link" href="/login">
+              Login
+            </a>
           </li>
-          {/* <li className="nav-item">
-            <a className="nav-link" href="#">Pricing</a>
+          <li className="nav-item mx-5">
+            <button onClick={handleLogout} className="nav-link">
+              Logout
+            </button>
           </li>
-          <li className="nav-item">
-            <a className="nav-link disabled" href="#">Disabled</a>
-          </li> */}
         </ul>
       </div>
     </nav>
-  )
+  );
 }

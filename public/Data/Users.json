@@ -1,5 +1,25 @@
 [
     {
+      "firstname": null,
+      "lastname": null,
+      "displayName": "pmhoff",
+      "id": "dad05102-b1c8-488e-a26a-4dbe2536e167",
+      "userName": "pmhoff@test.com",
+      "normalizedUserName": "PMHOFF@TEST.COM",
+      "email": "pmhoff@test.com",
+      "normalizedEmail": "PMHOFF@TEST.COM",
+      "emailConfirmed": false,
+      "passwordHash": "AQAAAAIAAYagAAAAEKJDy/mGbMYL5ykFEERRqZ7xxIrxZQpOqokIw9WLexz9vxjy4m2FjORIVY3LYL+2Lw==",
+      "securityStamp": "2RBOT4U3476OSNTV4F7KH5WXTS2HSMDV",
+      "concurrencyStamp": "45cc112c-dfe4-444e-a9a6-634a4e78e3aa",
+      "phoneNumber": null,
+      "phoneNumberConfirmed": false,
+      "twoFactorEnabled": false,
+      "lockoutEnd": null,
+      "lockoutEnabled": true,
+      "accessFailedCount": 0
+    },
+    {
         "firstname": "John",
         "lastname": "Doe",
         "displayName": "John Doe",
