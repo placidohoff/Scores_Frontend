@@ -7,6 +7,7 @@ export const ROUTES = {
     CREATE_CARD: "/createscorecard",
     VIEW_ROUND: "/view-round",
     VIEW_CARD_TOTAL: "/view-scorecard-total",
+    CREATE_MATCH: "/create-match"
 }
 
 export const ENVIRONMENTS = {
@@ -18,6 +19,5 @@ export const ENVIRONMENTS = {
 export const API_ROOTS = {
     DEV: "https://localhost:44327/api/",
     PROD: "",
-    WORK: "../Data/",
-    WORK_dep: "https://localhost:5000/api/"
+    WORK: "../Data/"
 }

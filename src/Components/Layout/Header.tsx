@@ -3,7 +3,7 @@ import { useAuth } from "../../Context/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const { logout } = useAuth(); // get logout from context
+  const { auth, logout } = useAuth(); // get logout from context
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -34,16 +34,22 @@ export default function Header() {
               Home
             </a>
           </li>
-          <li className="nav-item mx-5">
+          {
+            !auth.user && <li className="nav-item mx-5">
             <a className="nav-link" href="/login">
               Login
             </a>
           </li>
-          <li className="nav-item mx-5">
+          }
+          {
+            auth.user && <li className="nav-item mx-5">
             <button onClick={handleLogout} className="nav-link">
               Logout
             </button>
           </li>
+          }
+          
+          
         </ul>
       </div>
     </nav>

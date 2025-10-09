@@ -6,5 +6,6 @@ import ViewMyScorecards from "./ViewMyScorecards";
 import CreateScorecard from "./CreateScorecard";
 import ViewScorecardRound from "./ViewScorecardRound";
 import ViewScorecardTotal from "./ViewScorecardTotal";
+import CreateMatch from "./CreateMatch";
 
-export {Home, Login, Register, Dashboard, ViewMyScorecards, CreateScorecard, ViewScorecardRound, ViewScorecardTotal}
+export {Home, Login, Register, Dashboard, ViewMyScorecards, CreateScorecard, ViewScorecardRound, ViewScorecardTotal, CreateMatch}

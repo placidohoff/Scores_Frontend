@@ -8,12 +8,13 @@ import { LoginSimulation } from '../Utils/LoginSimulation';
 import { LoginLogic } from '../Utils/LoginLogic';
 
 export default function Login() {
-  const {auth, setAuth} = useAuth();
+  const { auth, setAuth } = useAuth();
   // const [email, setEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 
   const API_BASE_URL = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
@@ -26,33 +27,47 @@ export default function Login() {
   const location = useLocation();
 
   useEffect(() => {
-    const fetchData = async () => {
-      // const testGetFighters = await axios.get("../Data/Fighters.json");
-      console.log(process.env.REACT_APP_ENVIRONMENT)
-      console.log(API_BASE_URL);
-      const testGetFighters = await axios.get(API_BASE_URL + "fighter");
-      return testGetFighters;
-    }
-
-    console.log(API_BASE_URL);
-
-    const test = fetchData().then((res) => console.log(res.data.result));
-
-    console.log(test);
-
-
-
+    auth.user ? setIsLoggedIn(true) : setIsLoggedIn(false)
   }, [])
+
+  useEffect(() => {
+    auth.user ? setIsLoggedIn(true) : setIsLoggedIn(false)
+    setUserName('');
+    setDisplayName('');
+    setPassword('')
+  }, [auth])
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     // const testGetFighters = await axios.get("../Data/Fighters.json");
+  //     console.log(process.env.REACT_APP_ENVIRONMENT)
+  //     console.log(API_BASE_URL);
+  //     const testGetFighters = await axios.get(API_BASE_URL + "fighter");
+  //     return testGetFighters;
+  //   }
+
+  //   console.log(API_BASE_URL);
+
+  //   const test = fetchData().then((res) => console.log(res.data.result));
+
+  //   console.log(test);
+
+
+
+  // }, [])
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      // const res = await LoginSimulation({userName, password})
-      const res = await LoginLogic({ displayName, password })
+      const res = await LoginSimulation({ displayName, password })
+      // const res = await LoginLogic({ displayName, password })
       // setToken(res.token);
       // localStorage.setItem("token", res.token);
       localStorage.setItem("auth", JSON.stringify(res));
       setAuth({ ...auth, token: res.token, user: res.displayName });
+      setIsLoggedIn(true)
+
+      console.log(res, "RESPONSE");
 
       // navigate(
       //     location.state ||
@@ -64,17 +79,27 @@ export default function Login() {
     }
   }
 
+  const Welcome = () => {
+    console.log(auth.user)
+    return(
+      <h1>Welcome {auth.user}</h1>
+    )
+  }
+
   return (
 
     <div className="page-component">
       <div className="container">
         <div className="row">
-          <h2 className="my-5 mx-auto justify-content-center">
-            Login to your account
-          </h2>
-          <div className="col-md-6 offset-md-3">
-            <form className='d-flex flex-column' onSubmit={handleSubmit} style={{ marginBottom: "100px" }}>
-              {/* <label className="form-label">
+          {
+            !isLoggedIn &&
+            <>
+              <h2 className="my-5 mx-auto justify-content-center">
+                Login to your account
+              </h2>
+              <div className="col-md-6 offset-md-3">
+                <form className='d-flex flex-column' onSubmit={handleSubmit} style={{ marginBottom: "100px" }}>
+                  {/* <label className="form-label">
                 Email:
                 <input
                   type="email"
@@ -85,43 +110,50 @@ export default function Login() {
                 />
               </label> */}
 
-              <label style={{ textAlign: 'left' }} className="form-label">
-                Username:
-                <input
-                  type="text"
-                  className="form-control mb-4 p-2"
-                  // placeholder="Email"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                />
-              </label>
+                  <label style={{ textAlign: 'left' }} className="form-label">
+                    Username:
+                    <input
+                      type="text"
+                      className="form-control mb-4 p-2"
+                      // placeholder="Email"
+                      value={displayName}
+                      onChange={(e) => setDisplayName(e.target.value)}
+                    />
+                  </label>
 
-              <label style={{ textAlign: 'left' }} className="form-label">
-                Password:
-                <input
-                  type="password"
-                  className="form-control mb-4 p-2"
-                  // placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </label>
+                  <label style={{ textAlign: 'left' }} className="form-label">
+                    Password:
+                    <input
+                      type="password"
+                      className="form-control mb-4 p-2"
+                      // placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </label>
 
-              <button
-                className="btn btn-alpha d-flex justify-content-center mx-auto"
-                type="submit"
-              >
-                Login
-              </button>
+                  <button
+                    className="btn btn-alpha d-flex justify-content-center mx-auto"
+                    type="submit"
+                  >
+                    Login
+                  </button>
 
-              <Link
-                className="btn btn-bravo d-flex justify-content-center mx-auto mt-3"
-                to={"/register"}
-              >
-                Become a member
-              </Link>
-            </form>
-          </div>
+                  <Link
+                    className="btn btn-bravo d-flex justify-content-center mx-auto mt-3"
+                    to={"/register"}
+                  >
+                    Become a member
+                  </Link>
+                </form>
+              </div>
+            </>
+          }
+          {
+            isLoggedIn && <Welcome />
+            
+          }
+
         </div>
       </div>
     </div>

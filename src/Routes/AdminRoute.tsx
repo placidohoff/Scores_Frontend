@@ -8,19 +8,19 @@ import { IJwtPayload } from "../Interfaces/IJwtPayload";
 const AdminRoute = () => {
   const { auth } = useAuth();
 
-  if (!auth?.token) return <Navigate to="/login" replace />;
+  if (!auth?.token) return <Navigate to="/login" />;
 
   try {
     const decoded = jwtDecode<IJwtPayload>(auth.token);
     const role = decoded.role;
 
-    if (role !== "Admin") {
-      return <Navigate to="/" replace />;
+    if (role !== "admin") {
+      return <Navigate to="/" />;
     }
 
     return <Outlet />;
   } catch {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" />;
   }
 };
 
