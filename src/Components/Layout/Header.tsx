@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand mx-3" href="#">
+      <a className="navbar-brand mx-3" href="/">
         Majority Decision
       </a>
       <button

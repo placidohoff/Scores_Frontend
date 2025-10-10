@@ -1,12 +1,30 @@
 [
     {
-        "fighter_ID": 4,
-        "firstname": "Floyd",
-        "lastname": "Mayweather"
+      "fighter_ID": 4,
+      "firstname": "Floyd",
+      "lastname": "Mayweather",
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
     },
     {
-        "fighter_ID": 5,
-        "firstname": "Manny",
-        "lastname": "Pacquiao"
+      "fighter_ID": 5,
+      "firstname": "Manny",
+      "lastname": "Pacquiao",
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
+    },
+    {
+      "fighter_ID": 6,
+      "firstname": "Terrance",
+      "lastname": "Crawford",
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
+    },
+    {
+      "fighter_ID": 7,
+      "firstname": "Canelo",
+      "lastname": "Alvarez",
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
     }
 ]

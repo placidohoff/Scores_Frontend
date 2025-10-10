@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_ROOTS, ENVIRONMENTS } from "../Utils/Constants";
+import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS } from "../Utils/Constants";
 import { IFighter } from "../Interfaces/IFighter";
 
 const CreateBoxingMatch = () => {
@@ -18,12 +18,20 @@ const CreateBoxingMatch = () => {
         : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
             ? API_ROOTS.PROD
             : API_ROOTS.WORK
+    
+    const API_ENDPOINT = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+        ? API_ENDPOINTS.FIGHTERS.DEV
+        : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
+            ? API_ENDPOINTS.FIGHTERS.PROD
+            : API_ENDPOINTS.FIGHTERS.PROD
 
     useEffect(() => {
         const getFighters = async () => {
-            const { data } = await axios.get<IFighter[]>(API_BASE_URL + "Fighters.json")
+            // const { data } = await axios.get<IFighter[]>(API_BASE_URL + API_ENDPOINT)
+            const { data } = await axios.get(API_BASE_URL + API_ENDPOINT)
             console.log(data)
-            setFighters(data);
+            // setFighters(data);
+            setFighters(data.result);
         }
 
         getFighters()
@@ -40,6 +48,8 @@ const CreateBoxingMatch = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
+        //TODO: Front-end validations
+
         // Since backend uses [FromForm], we must send FormData
         const data = new FormData();
         data.append("FighterA_ID", formData.FighterA_ID);
@@ -48,7 +58,7 @@ const CreateBoxingMatch = () => {
 
         try {
             const response = await axios.post(
-                "https://localhost:7001/api/BoxingMatch/CreateBoxingMatch",
+                API_ROOTS + API_ENDPOINT,
                 data,
                 {
                     headers: {
@@ -70,7 +80,7 @@ const CreateBoxingMatch = () => {
                 Create Boxing Match
             </h2>
             <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-                <label className="font-medium">Fighter A:</label>
+                <label style={{textAlign: 'left'}} className="font-medium">Fighter A:</label>
                 <select
                     name="FighterA_ID"
                     value={formData.FighterA_ID}
@@ -86,7 +96,7 @@ const CreateBoxingMatch = () => {
                     ))}
                 </select>
 
-                <label className="font-medium">Fighter B:</label>
+                <label style={{textAlign: 'left'}} className="font-medium">Fighter B:</label>
                 <select
                     name="FighterB_ID"
                     value={formData.FighterB_ID}
@@ -101,19 +111,21 @@ const CreateBoxingMatch = () => {
                         </option>
                     ))}
                 </select>
-                <label className="font-medium">Scheduled Rounds:</label>
+                <label style={{textAlign: 'left'}} className="font-medium">Scheduled Rounds:</label>
                 <input
                     type="number"
                     name="ScheduledRounds"
                     value={formData.ScheduledRounds}
                     onChange={handleChange}
                     className="border rounded p-2"
+                    style={{width: '25%'}}
                     required
                 />
 
                 <button
                     type="submit"
-                    className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+                    className="bg-blue-600 py-2 px-4 rounded hover:bg-blue-700 mx-auto mb-4"
+                    style={{width: "50%"}}
                 >
                     Submit
                 </button>
