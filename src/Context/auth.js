@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(getInitialAuth);
 
   const logout = () => {
-    setAuth({ user: null, token: "" });
+    setAuth({ user: null, token: "", id:'' });
     localStorage.removeItem("auth");
     
   };

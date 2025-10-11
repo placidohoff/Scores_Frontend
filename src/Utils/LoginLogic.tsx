@@ -9,6 +9,7 @@ interface LoginRequest {
 interface LoginResponse {
   displayName: string;
   token: string;
+  id: string;
 }
 
 const API_BASE_URL =

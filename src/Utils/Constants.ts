@@ -3,12 +3,13 @@ export const ROUTES = {
     LOGIN: "/login",
     REGISTER: "/register",
     DASHBOARD: "/dashboard",
-    VIEW_MY_CARDS: "/viewscorecards",
-    CREATE_CARD: "/createscorecard",
+    VIEW_MY_CARDS: "/view-scorecards",
+    CREATE_CARD: "/create-scorecard",
     VIEW_ROUND: "/view-round",
     VIEW_CARD_TOTAL: "/view-scorecard-total",
     CREATE_MATCH: "/create-match",
-    CREATE_FIGHTER: "/create-fighter"
+    CREATE_FIGHTER: "/create-fighter",
+    SCORE_FIGHT: "/score-fight"
 }
 
 export const ENVIRONMENTS = {
@@ -32,6 +33,11 @@ export const API_ENDPOINTS = {
     BOXING_MATCHES: {
         DEV: 'BoxingMatch',
         WORK: 'BoxingMatches.json',
+        PROD: ''
+    },
+    SCORECARDS: {
+        DEV: 'Scorecard',
+        WORK: 'Scorecards.json',
         PROD: ''
     }
 }

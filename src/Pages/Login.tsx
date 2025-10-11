@@ -64,7 +64,7 @@ export default function Login() {
       // setToken(res.token);
       // localStorage.setItem("token", res.token);
       localStorage.setItem("auth", JSON.stringify(res));
-      setAuth({ ...auth, token: res.token, user: res.displayName });
+      setAuth({ ...auth, token: res.token, user: res.displayName, id: res.id });
       setIsLoggedIn(true)
 
       console.log(res, "RESPONSE");

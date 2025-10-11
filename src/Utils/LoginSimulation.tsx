@@ -11,6 +11,7 @@ interface LoginRequest {
 interface LoginResponse {
   displayName: string;
   token: string;
+  id: string,
 }
 
 const mockSecret = "super_secret_for_testing"; // only for simulation
