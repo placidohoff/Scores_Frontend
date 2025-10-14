@@ -1,14 +1,46 @@
-[
+{
+  "errorMessages": [],
+  "statusCode": 200,
+  "isSuccess": false,
+  "result": [
     {
-        "scorecard_ID": 1,
-        "boxingMatch_ID": 1,
-        "user_ID": "a3b4f672-91e1-4b7b-bc4a-908a91bde9c4",
-        "ruling": 1,
-        "totalRoundsFought": 12,
-        "fighterA_ScoreTotal": 115,
-        "fighterB_ScoreTotal": 113,
-        "isScorecardComplete": true,
-        "scheduledRounds": 12
-        
+      "scorecard_ID": 17,
+      "boxingMatch_ID": 3,
+      "user_ID": "7054809e-dd38-4a59-973f-679f2c99062b",
+      "ruling": null,
+      "totalRoundsFought": null,
+      "fighterA_ScoreTotal": null,
+      "fighterB_ScoreTotal": null,
+      "isScorecardComplete": false,
+      "scheduledRounds": 12,
+      "boxingMatch": null,
+      "user": null
+    },
+    {
+      "scorecard_ID": 18,
+      "boxingMatch_ID": 2,
+      "user_ID": "dad05102-b1c8-488e-a26a-4dbe2536e167",
+      "ruling": null,
+      "totalRoundsFought": null,
+      "fighterA_ScoreTotal": null,
+      "fighterB_ScoreTotal": null,
+      "isScorecardComplete": false,
+      "scheduledRounds": 12,
+      "boxingMatch": null,
+      "user": null
+    },
+    {
+      "scorecard_ID": 19,
+      "boxingMatch_ID": 2,
+      "user_ID": "7054809e-dd38-4a59-973f-679f2c99062b",
+      "ruling": null,
+      "totalRoundsFought": null,
+      "fighterA_ScoreTotal": null,
+      "fighterB_ScoreTotal": null,
+      "isScorecardComplete": false,
+      "scheduledRounds": 12,
+      "boxingMatch": null,
+      "user": null
     }
-]
+  ]
+}

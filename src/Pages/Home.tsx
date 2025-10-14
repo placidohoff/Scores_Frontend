@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS } from '../Utils/Constants';
+import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS, LOCAL_STORAGE } from '../Utils/Constants';
 import axios from 'axios';
 import { IBoxingMatch } from '../Interfaces/IBoxingMatch';
 import { BoxingMatchCard } from '../Components';
 import { IFighter } from '../Interfaces/IFighter';
+import { useData } from '../Context/data';
 
 export default function Home() {
   const [matches, setMatches] = useState<IBoxingMatch[]>();
   const [fighters, setFighters] = useState<IFighter[]>([]);
+  const {ctxBoxingMatches, setCTXBoxingMatches, ctxFighters, setCTXFighters} = useData();
+  
 
   const API_BASE_URL = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
     ? API_ROOTS.DEV
@@ -33,10 +36,10 @@ export default function Home() {
       console.log(data)
 
       {
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV || process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD && setMatches(data.result)
+        (process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV || process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD) && setCTXBoxingMatches(data.result); /*setMatches(data.result);*/
       }
       {
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setMatches(data)
+        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setCTXBoxingMatches(data); localStorage.setItem(LOCAL_STORAGE.BOXING_MATCHES, JSON.stringify(data.result)) /* setMatches(data); */
       }
 
     }
@@ -46,12 +49,14 @@ export default function Home() {
       console.log(data, 'fighters')
 
       {
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV || process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD && setFighters(data.result)
+        (process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV || process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD) && setCTXFighters(data.result); localStorage.setItem(LOCAL_STORAGE.FIGHTERS, JSON.stringify(data.result))
       }
       {
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setFighters(data)
+        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setCTXFighters(data);  /* setFighters(data); */
       }
     }
+
+    console.log(matches, "MATCHES")
 
     getMatches();
     getFighters();
@@ -62,7 +67,7 @@ export default function Home() {
       <h1>Recent Scorecards:</h1>
       <h1 className='my-5'>Fights to score:</h1>
       {
-        matches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={fighters} key={index} />)
+        ctxBoxingMatches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={ctxFighters} key={index} />)
       }
     </div>
   )

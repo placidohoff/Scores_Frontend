@@ -1,7 +1,14 @@
-[
+
+
+{
+  "errorMessages": [],
+  "statusCode": 200,
+  "isSuccess": false,
+  "result": [
     {
         "comment_ID": 1,
         "round_ID": 1,
         "comments": "This round was awesome"
     }
 ]
+}

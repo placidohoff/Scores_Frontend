@@ -1,4 +1,8 @@
-[
+{
+  "errorMessages": [],
+  "statusCode": 200,
+  "isSuccess": false,
+  "result": [
     {
       "fighter_ID": 4,
       "firstname": "Floyd",
@@ -26,5 +30,20 @@
       "lastname": "Alvarez",
       "matchesAsFighterA": null,
       "matchesAsFighterB": null
+    },
+    {
+      "fighter_ID": 8,
+      "firstname": null,
+      "lastname": null,
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
+    },
+    {
+      "fighter_ID": 9,
+      "firstname": null,
+      "lastname": null,
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
     }
-]
+  ]
+}

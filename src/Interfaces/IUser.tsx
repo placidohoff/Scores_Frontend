@@ -28,3 +28,10 @@ export interface IUserTest{
       passwordHash: string;
       role: string;
 }
+
+export interface IUserRegister{
+  DisplayName: string;
+  Email: string;
+  Password: string;
+  Role: string;
+}

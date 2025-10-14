@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { RegisterSimulation } from "../Utils/RegisterSimulation";
+import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS } from "../Utils/Constants";
+import { RegisterLogic } from "../Utils/RegisterLogic";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -11,6 +13,7 @@ export default function Register() {
   });
 
   const [message, setMessage] = useState("");
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -28,7 +31,8 @@ export default function Register() {
     }
 
     try {
-      const res = await RegisterSimulation({
+      // const res = await RegisterSimulation({
+      const res = await RegisterLogic({
         displayName: form.displayName,
         email: form.email,
         password: form.password,
@@ -57,7 +61,7 @@ export default function Register() {
     <div className="register-container" style={{ maxWidth: 400, margin: "0 auto" }}>
       <h2>Register (Simulated)</h2>
 
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleRegister} className="d-flex flex-column">
         <input
           type="text"
           name="displayName"
@@ -91,7 +95,7 @@ export default function Register() {
           required
         />
         <select name="role" value={form.role} onChange={handleChange}>
-          <option value="Customer">Customer</option>
+          <option value="User">User</option>
           <option value="Admin">Admin</option>
         </select>
 

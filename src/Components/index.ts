@@ -2,6 +2,9 @@ import Footer from "./Layout/Footer";
 import Header from "./Layout/Header";
 import BoxingMatchCard from "./BoxingMatchCard";
 import RoundscoreCell from "./RoundscoreCell";
-import ScorecardCard from "./ScorecardCard";
+import UserScorecard from "./UserScorecard";
+import RoundScoresAndComment from "./RoundScoresAndComment";
 
-export {Header, Footer, BoxingMatchCard, RoundscoreCell, ScorecardCard}
+import ViewListUserScorecards from "./ViewListUserScorecards";
+
+export {Header, Footer, BoxingMatchCard, RoundscoreCell, ViewListUserScorecards, UserScorecard, RoundScoresAndComment}

@@ -7,18 +7,21 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { AuthProvider } from './Context/auth';
+import { DataProvider } from './Context/data';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <DataProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </DataProvider>
     </AuthProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 

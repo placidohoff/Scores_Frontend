@@ -16,7 +16,7 @@ const getInitialAuth = () => {
   return { user: null, token: "" };
 };
 
-
+//!!! TODO: STORE THE TOKEN IN A CTXUSER GLOBAL STATE TO BE DECODED BY CHILD COMPONENTS INSTEAD OF STORING IT IN LOCALSTORAGE !!!
 
 
 const AuthProvider = ({ children }) => {

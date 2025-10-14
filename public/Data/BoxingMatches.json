@@ -1,8 +1,23 @@
-[
-   {
-    "boxingMatch_ID": 1,
-    "fighterA_ID": 4,
-    "fighterB_ID": 5,
-    "scheduledRounds": 12
-   }
-]
+{
+  "errorMessages": [],
+  "statusCode": 200,
+  "isSuccess": false,
+  "result": [
+    {
+      "boxingMatch_ID": 2,
+      "fighterA_ID": 4,
+      "fighterB_ID": 5,
+      "fighterA": null,
+      "fighterB": null,
+      "scheduledRounds": 12
+    },
+    {
+      "boxingMatch_ID": 3,
+      "fighterA_ID": 6,
+      "fighterB_ID": 7,
+      "fighterA": null,
+      "fighterB": null,
+      "scheduledRounds": 12
+    }
+  ]
+}

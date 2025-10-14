@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Console } from 'console';
 import { LoginSimulation } from '../Utils/LoginSimulation';
 import { LoginLogic } from '../Utils/LoginLogic';
+import { ViewListUserScorecards } from '../Components';
 
 export default function Login() {
   const { auth, setAuth } = useAuth();
@@ -59,8 +60,8 @@ export default function Login() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const res = await LoginSimulation({ displayName, password })
-      // const res = await LoginLogic({ displayName, password })
+      // const res = await LoginSimulation({ displayName, password })
+      const res = await LoginLogic({ displayName, password })
       // setToken(res.token);
       // localStorage.setItem("token", res.token);
       localStorage.setItem("auth", JSON.stringify(res));
@@ -81,8 +82,12 @@ export default function Login() {
 
   const Welcome = () => {
     console.log(auth.user)
-    return(
-      <h1>Welcome {auth.user}</h1>
+    return (
+      <>
+        <h1>Welcome {auth.user}</h1>
+
+        <ViewListUserScorecards />
+      </>
     )
   }
 
@@ -151,7 +156,7 @@ export default function Login() {
           }
           {
             isLoggedIn && <Welcome />
-            
+
           }
 
         </div>

@@ -8,5 +8,7 @@ import ViewScorecardRound from "./ViewScorecardRound";
 import ViewScorecardTotal from "./ViewScorecardTotal";
 import CreateMatch from "./CreateMatch";
 import CreateFighter from "./CreateFighter";
+import ScoreRound from "./ScoreRound";
+import ScoreFight from "./ScoreFight";
 
-export {Home, Login, Register, Dashboard, ViewMyScorecards, CreateScorecard, ViewScorecardRound, ViewScorecardTotal, CreateMatch, CreateFighter}
+export {Home, Login, Register, Dashboard, ViewMyScorecards, CreateScorecard, ViewScorecardRound, ViewScorecardTotal, CreateMatch, CreateFighter, ScoreRound, ScoreFight}

@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../../Context/auth";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../Utils/Constants";
 
 export default function Header() {
   const { auth, logout } = useAuth(); // get logout from context
@@ -36,20 +37,29 @@ export default function Header() {
           </li>
           {
             !auth.user && <li className="nav-item mx-5">
-            <a className="nav-link" href="/login">
-              Login
-            </a>
-          </li>
+              <a className="nav-link" href="/login">
+                Login
+              </a>
+            </li>
           }
           {
-            auth.user && <li className="nav-item mx-5">
-            <button onClick={handleLogout} className="nav-link">
-              Logout
-            </button>
-          </li>
+
+            auth.user && (
+              <>
+                <li>
+                  <a className="nav-link" href={ROUTES.VIEW_MY_SCORES}>
+                    My Scorecards
+                  </a>
+                </li>
+                <li className="nav-item mx-5">
+                  <button onClick={handleLogout} className="nav-link">
+                    Logout
+                  </button>
+                </li>
+              </>)
           }
-          
-          
+
+
         </ul>
       </div>
     </nav>

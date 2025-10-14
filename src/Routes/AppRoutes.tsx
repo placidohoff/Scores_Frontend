@@ -1,10 +1,11 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from '../Utils/Constants'
-import { CreateFighter, CreateMatch, CreateScorecard, Dashboard, Home, Login, Register, ViewMyScorecards, ViewScorecardRound, ViewScorecardTotal } from '../Pages/Index'
+import { CreateFighter, CreateMatch, CreateScorecard, Dashboard, Home, Login, Register, ScoreFight, ScoreRound, ViewMyScorecards, ViewScorecardRound, ViewScorecardTotal } from '../Pages/Index'
 import NotFound from '../Pages/NotFound'
 import PrivateRoute from './PrivateRoute'
 import AdminRoute from './AdminRoute'
+import CreateRounds from '../Pages/CreateRounds'
 
 
 
@@ -12,7 +13,7 @@ import AdminRoute from './AdminRoute'
 
 export default function AppRoutes() {
     return (
-        
+
         <Routes>
             <Route path={ROUTES.HOME} element={<Home />} />
             <Route path={ROUTES.LOGIN} element={<Login />} />
@@ -23,6 +24,9 @@ export default function AppRoutes() {
                 <Route path={ROUTES.CREATE_CARD} element={<CreateScorecard />} />
                 <Route path={ROUTES.VIEW_CARD_TOTAL} element={<ViewScorecardTotal />} />
                 <Route path={ROUTES.VIEW_ROUND} element={<ViewScorecardRound />} />
+                <Route path={ROUTES.SCORE_ROUND} element={<ScoreRound />} />
+                <Route path={ROUTES.CREATE_ROUNDS_NEW_SCORECARD} element={<CreateRounds />} />
+                <Route path={ROUTES.SCORE_FIGHT} element={<ScoreFight />} />
             </Route>
             <Route element={<AdminRoute />}>
                 <Route path={ROUTES.CREATE_MATCH} element={<CreateMatch />} />
@@ -31,6 +35,6 @@ export default function AppRoutes() {
 
             <Route path="*" element={<NotFound />} />
         </Routes>
-        
+
     )
 }

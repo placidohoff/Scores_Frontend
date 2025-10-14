@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_ROOTS, ENVIRONMENTS } from "./Constants";
+import jwtDecode from "jwt-decode";
 
 interface LoginRequest {
   displayName: string;
@@ -10,6 +11,16 @@ interface LoginResponse {
   displayName: string;
   token: string;
   id: string;
+}
+
+interface JwtPayload{
+  displayName: string;
+  email: string;
+  exp: number;
+  iat: number;
+  id: string;
+  nbf: number;
+  role: string;
 }
 
 const API_BASE_URL =
@@ -47,7 +58,17 @@ export const LoginLogic = async (
     localStorage.setItem("token", result.token);
     localStorage.setItem("displayName", result.displayName);
 
-    return result;
+    const decoded = jwtDecode<JwtPayload>(result.token)
+    console.log(decoded, 'DECODED')
+
+    const payload = {
+    id: decoded.id,
+    displayName: decoded.displayName,
+    role: decoded.role,
+    token: result.token
+  };
+
+    return payload;
   } catch (err: any) {
     console.error("Login error:", err.response?.data || err.message);
     throw new Error(

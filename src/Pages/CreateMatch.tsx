@@ -19,20 +19,28 @@ const CreateBoxingMatch = () => {
             ? API_ROOTS.PROD
             : API_ROOTS.WORK
     
-    const API_ENDPOINT = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+    const API_ENDPOINT_FIGHTERS = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
         ? API_ENDPOINTS.FIGHTERS.DEV
         : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
             ? API_ENDPOINTS.FIGHTERS.PROD
             : API_ENDPOINTS.FIGHTERS.PROD
 
+    const API_ENDPOINT_MATCHES = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+        ? API_ENDPOINTS.BOXING_MATCHES.DEV
+        : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
+            ? API_ENDPOINTS.BOXING_MATCHES.PROD
+            : API_ENDPOINTS.BOXING_MATCHES.PROD
+
     useEffect(() => {
         const getFighters = async () => {
             // const { data } = await axios.get<IFighter[]>(API_BASE_URL + API_ENDPOINT)
-            const { data } = await axios.get(API_BASE_URL + API_ENDPOINT)
+            const { data } = await axios.get(API_BASE_URL + API_ENDPOINT_FIGHTERS)
             console.log(data)
             // setFighters(data);
             setFighters(data.result);
         }
+
+        console.log(API_BASE_URL + API_ENDPOINT_FIGHTERS)
 
         getFighters()
 
@@ -58,7 +66,7 @@ const CreateBoxingMatch = () => {
 
         try {
             const response = await axios.post(
-                API_ROOTS + API_ENDPOINT,
+                API_BASE_URL+ API_ENDPOINT_MATCHES,
                 data,
                 {
                     headers: {

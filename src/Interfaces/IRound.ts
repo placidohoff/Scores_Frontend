@@ -6,5 +6,6 @@ export interface IRound {
   fighterB_Score: number;
   fighterA_ID: number;
   fighterB_ID: number;
+  isScored: boolean;
   scorecard?: any; //NAVIGATION PROP
 }

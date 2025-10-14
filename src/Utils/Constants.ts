@@ -3,13 +3,16 @@ export const ROUTES = {
     LOGIN: "/login",
     REGISTER: "/register",
     DASHBOARD: "/dashboard",
-    VIEW_MY_CARDS: "/view-scorecards",
+    VIEW_MY_CARDS: "/my-scorecards",
     CREATE_CARD: "/create-scorecard",
     VIEW_ROUND: "/view-round",
     VIEW_CARD_TOTAL: "/view-scorecard-total",
     CREATE_MATCH: "/create-match",
     CREATE_FIGHTER: "/create-fighter",
-    SCORE_FIGHT: "/score-fight"
+    SCORE_FIGHT: "/score-fight",
+    SCORE_ROUND: "/score-round",
+    VIEW_MY_SCORES: "/my-scorecards",
+    CREATE_ROUNDS_NEW_SCORECARD: '/create-rounds'
 }
 
 export const ENVIRONMENTS = {
@@ -39,5 +42,25 @@ export const API_ENDPOINTS = {
         DEV: 'Scorecard',
         WORK: 'Scorecards.json',
         PROD: ''
+    },
+    AUTH:{
+        DEV: 'Auth',
+        WORK: 'Users.json',
+        PROD: ''
+    },
+    ROUNDS:{
+        DEV: 'Round',
+        WORK: 'Rounds.json',
+        PROD: '',
+        CREATE_ROUNDS_DEV: 'Round/create-rounds'
     }
 }
+
+ export const LOCAL_STORAGE = {
+        AUTH: 'majority_decision_auth',
+        BOXING_MATCHES: 'majority_decision_matches',
+        COMMENTS: 'majority_decison_comments',
+        FIGHTERS: 'majority_decision_fighters',
+        ROUNDS: 'majority_decision_rounds',
+        SCORECARDS: 'majority_decision_scorecards'
+    }
