@@ -24,7 +24,7 @@ export default function ViewListUserScorecards() {
         ? API_ENDPOINTS.SCORECARDS.DEV
         : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
             ? API_ENDPOINTS.SCORECARDS.PROD
-            : API_ENDPOINTS.SCORECARDS.PROD
+            : API_ENDPOINTS.SCORECARDS.WORK
 
     useEffect(() => {
         const getScorecards = async () => {
@@ -33,6 +33,8 @@ export default function ViewListUserScorecards() {
             );
 
             const data = response.data;
+
+            console.log(data)
 
             const filteredCards = data.result.filter(c => c.user_ID == auth.id)
 

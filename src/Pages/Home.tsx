@@ -39,7 +39,7 @@ export default function Home() {
         (process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV || process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD) && setCTXBoxingMatches(data.result); /*setMatches(data.result);*/
       }
       {
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setCTXBoxingMatches(data); localStorage.setItem(LOCAL_STORAGE.BOXING_MATCHES, JSON.stringify(data.result)) /* setMatches(data); */
+        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setCTXBoxingMatches(data.result); localStorage.setItem(LOCAL_STORAGE.BOXING_MATCHES, JSON.stringify(data.result)) /* setMatches(data); */
       }
 
     }
@@ -52,7 +52,7 @@ export default function Home() {
         (process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV || process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD) && setCTXFighters(data.result); localStorage.setItem(LOCAL_STORAGE.FIGHTERS, JSON.stringify(data.result))
       }
       {
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setCTXFighters(data);  /* setFighters(data); */
+        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setCTXFighters(data.result);  /* setFighters(data); */
       }
     }
 
@@ -60,6 +60,7 @@ export default function Home() {
 
     getMatches();
     getFighters();
+    console.log(ctxBoxingMatches)
   }, [])
 
   return (
@@ -68,6 +69,7 @@ export default function Home() {
       <h1 className='my-5'>Fights to score:</h1>
       {
         ctxBoxingMatches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={ctxFighters} key={index} />)
+        
       }
     </div>
   )

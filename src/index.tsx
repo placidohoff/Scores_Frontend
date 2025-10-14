@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js"
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { AuthProvider } from './Context/auth';
 import { DataProvider } from './Context/data';
