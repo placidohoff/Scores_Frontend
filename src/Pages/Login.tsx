@@ -29,6 +29,9 @@ export default function Login() {
 
   useEffect(() => {
     auth.user ? setIsLoggedIn(true) : setIsLoggedIn(false)
+    // alert(process.env.REACT_APP_ENVIRONMENT)
+    if (process.env.REACT_APP_ENVIRONMENT === "work_domain")
+      setAuth({ ...auth, token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaXNwbGF5TmFtZSI6InBtaG9mZiIsImlkIjoiZGFkMDUxMDItYjFjOC00ODhlLWEyNmEtNGRiZTI1MzZlMTY3IiwiZW1haWwiOiJwbWhvZmZAdGVzdC5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYmYiOjE3NTk5NzgxMjIsImV4cCI6MTc2MDU4MjkyMiwiaWF0IjoxNzU5OTc4MTIyfQ.eivh_tQ5KD5TgWS9sgjSiNmeCZl3Xs8UECJTbrk2YYA", user: "pmhoff", id: "dad05102-b1c8-488e-a26a-4dbe2536e167" })
   }, [])
 
   useEffect(() => {
@@ -143,6 +146,7 @@ export default function Login() {
                   >
                     Login
                   </button>
+
 
                   <Link
                     className="btn btn-bravo d-flex justify-content-center mx-auto mt-3"

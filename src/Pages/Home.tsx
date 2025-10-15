@@ -9,7 +9,7 @@ import { useData } from '../Context/data';
 export default function Home() {
   const [matches, setMatches] = useState<IBoxingMatch[]>();
   const [fighters, setFighters] = useState<IFighter[]>([]);
-  const {ctxBoxingMatches, setCTXBoxingMatches, ctxFighters, setCTXFighters} = useData();
+  const {ctxBoxingMatches, setCTXBoxingMatches, ctxFighters, setCTXFighters, ctxRounds} = useData();
   
 
   const API_BASE_URL = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
@@ -41,6 +41,8 @@ export default function Home() {
       {
         process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.WORK && setCTXBoxingMatches(data.result); localStorage.setItem(LOCAL_STORAGE.BOXING_MATCHES, JSON.stringify(data.result)) /* setMatches(data); */
       }
+
+      console.log(ctxRounds)
 
     }
 

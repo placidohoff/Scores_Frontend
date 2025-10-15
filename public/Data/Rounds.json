@@ -1,11 +1,362 @@
 [
     {
         "round_ID": 1,
-        "scorecard_ID": 1,
+        "scorecard_ID": 17,
+        "roundNumber": 1,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 2,
+        "scorecard_ID": 17,
+        "roundNumber": 2,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 3,
+        "scorecard_ID": 17,
+        "roundNumber": 3,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 4,
+        "scorecard_ID": 17,
+        "roundNumber": 4,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 5,
+        "scorecard_ID": 17,
+        "roundNumber": 5,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 6,
+        "scorecard_ID": 17,
+        "roundNumber": 6,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 7,
+        "scorecard_ID": 17,
+        "roundNumber": 7,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 8,
+        "scorecard_ID": 17,
+        "roundNumber": 8,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 9,
+        "scorecard_ID": 17,
+        "roundNumber": 9,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 10,
+        "scorecard_ID": 17,
+        "roundNumber": 10,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 11,
+        "scorecard_ID": 17,
+        "roundNumber": 11,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 12,
+        "scorecard_ID": 17,
+        "roundNumber": 12,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 6,
+        "fighterB_ID": 7,
+        "isScored": true
+    },
+    {
+        "round_ID": 13,
+        "scorecard_ID": 18,
         "roundNumber": 1,
         "fighterA_Score": 10,
         "fighterB_Score": 9,
         "fighterA_ID": 4,
-        "fighterB_ID": 5
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 14,
+        "scorecard_ID": 18,
+        "roundNumber": 2,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 15,
+        "scorecard_ID": 18,
+        "roundNumber": 3,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 16,
+        "scorecard_ID": 18,
+        "roundNumber": 4,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 17,
+        "scorecard_ID": 18,
+        "roundNumber": 5,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 18,
+        "scorecard_ID": 18,
+        "roundNumber": 6,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 19,
+        "scorecard_ID": 18,
+        "roundNumber": 7,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": false
+    },
+    {
+        "round_ID": 20,
+        "scorecard_ID": 18,
+        "roundNumber": 8,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": false
+    },
+    {
+        "round_ID": 21,
+        "scorecard_ID": 18,
+        "roundNumber": 9,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": false
+    },
+    {
+        "round_ID": 22,
+        "scorecard_ID": 18,
+        "roundNumber": 10,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": false
+    },
+    {
+        "round_ID": 23,
+        "scorecard_ID": 18,
+        "roundNumber": 11,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": false
+    },
+    {
+        "round_ID": 24,
+        "scorecard_ID": 18,
+        "roundNumber": 12,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": false
+    },
+    {
+        "round_ID": 25,
+        "scorecard_ID": 19,
+        "roundNumber": 1,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 26,
+        "scorecard_ID": 19,
+        "roundNumber": 2,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 27,
+        "scorecard_ID": 19,
+        "roundNumber": 3,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 28,
+        "scorecard_ID": 19,
+        "roundNumber": 4,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 29,
+        "scorecard_ID": 19,
+        "roundNumber": 5,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 30,
+        "scorecard_ID": 19,
+        "roundNumber": 6,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 31,
+        "scorecard_ID": 19,
+        "roundNumber": 7,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 32,
+        "scorecard_ID": 19,
+        "roundNumber": 8,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 33,
+        "scorecard_ID": 19,
+        "roundNumber": 9,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 34,
+        "scorecard_ID": 19,
+        "roundNumber": 10,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 35,
+        "scorecard_ID": 19,
+        "roundNumber": 11,
+        "fighterA_Score": 9,
+        "fighterB_Score": 10,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
+    },
+    {
+        "round_ID": 36,
+        "scorecard_ID": 19,
+        "roundNumber": 12,
+        "fighterA_Score": 10,
+        "fighterB_Score": 9,
+        "fighterA_ID": 4,
+        "fighterB_ID": 5,
+        "isScored": true
     }
 ]

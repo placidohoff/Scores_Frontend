@@ -24,9 +24,12 @@ export default function Header() {
   }
 
   useEffect(() => {
-    const decoded: IAuth = jwtDecode(auth.token)
-    console.log(decoded)
-    if (decoded.role == "admin") setIsAdmin(true)
+    if (auth.token) {
+      const decoded: IAuth = jwtDecode(auth.token)
+      console.log(decoded)
+      if (decoded.role == "admin") setIsAdmin(true)
+    }
+
   }, [])
 
   return (

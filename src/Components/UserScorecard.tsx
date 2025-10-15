@@ -79,7 +79,8 @@ export default function UserScorecard(props: Props) {
     const scoreFight = (cardID: number) => {
         if (isActive) {
             navigate(ROUTES.SCORE_FIGHT, {
-                state: { scorecard: scorecard }
+                state: { scorecard: scorecard, rounds: roundsForThisCard }
+
             })
         }
     }
@@ -142,10 +143,15 @@ export default function UserScorecard(props: Props) {
                     <span>&nbsp;</span>
                 </div>
             </div>
-            <div className="d-flex flex-column justify-content-center align-items-center mx-3">
-                <button onClick={() => deleteScorecard(scorecard.scorecard_ID)} className="btn text-danger view-card-button">DELETE</button>
-                <button onClick={() => scoreFight(scorecard.scorecard_ID)} className="btn text-success view-card-button">SCORE FIGHT</button>
-            </div>
+            {
+                isActive && (
+                    <div className="d-flex flex-column justify-content-center align-items-center mx-3">
+                        <button onClick={() => deleteScorecard(scorecard.scorecard_ID)} className="btn text-danger view-card-button">DELETE</button>
+                        <button onClick={() => scoreFight(scorecard.scorecard_ID)} className="btn text-success view-card-button">SCORE FIGHT</button>
+                    </div>
+                )
+            }
+
 
         </div>
     )

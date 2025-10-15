@@ -22,7 +22,16 @@ export default function BoxingMatchCard(props: Props) {
   const navigate = useNavigate()
   const { ctxScorecards } = useData()
   const { auth } = useAuth()
-  const decoded:IAuth = jwtDecode(auth.token)
+let decoded: IAuth | null = null
+
+if (auth?.token) {
+  try {
+    decoded = jwtDecode<IAuth>(auth.token)
+  } catch (err) {
+    console.error("Invalid JWT token", err)
+    // Optional: redirect to login or clear token if necessary
+  }
+}
 
   useEffect(() => {
     fighters.forEach((f) => {
@@ -37,7 +46,7 @@ export default function BoxingMatchCard(props: Props) {
 
   const checkScorecardExist = () => {
     // console.log(decoded)
-    const existingCard = ctxScorecards.find(s =>  s.boxingMatch_ID == boxingMatch.boxingMatch_ID && s.user_ID == decoded.id )
+    const existingCard = ctxScorecards.find(s =>  s.boxingMatch_ID == boxingMatch.boxingMatch_ID && s.user_ID == decoded?.id )
     if(existingCard){
       navigate(ROUTES.SCORE_FIGHT, {
         state: {scorecard: existingCard}

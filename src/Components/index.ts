@@ -4,7 +4,8 @@ import BoxingMatchCard from "./BoxingMatchCard";
 import RoundscoreCell from "./RoundscoreCell";
 import UserScorecard from "./UserScorecard";
 import RoundScoresAndComment from "./RoundScoresAndComment";
+import ScoreRound from "./ScoreRound";
 
 import ViewListUserScorecards from "./ViewListUserScorecards";
 
-export {Header, Footer, BoxingMatchCard, RoundscoreCell, ViewListUserScorecards, UserScorecard, RoundScoresAndComment}
+export {Header, Footer, BoxingMatchCard, RoundscoreCell, ViewListUserScorecards, UserScorecard, RoundScoresAndComment, ScoreRound}
