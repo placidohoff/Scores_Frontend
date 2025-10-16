@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS, LOCAL_STORAGE } from '../Utils/Constants';
 import axios from 'axios';
 import { IBoxingMatch } from '../Interfaces/IBoxingMatch';
-import { BoxingMatchCard } from '../Components';
+import { BoxingMatchCard, UserScorecard } from '../Components';
 import { IFighter } from '../Interfaces/IFighter';
 import { useData } from '../Context/data';
 
 export default function Home() {
   const [matches, setMatches] = useState<IBoxingMatch[]>();
   const [fighters, setFighters] = useState<IFighter[]>([]);
-  const {ctxBoxingMatches, setCTXBoxingMatches, ctxFighters, setCTXFighters, ctxRounds} = useData();
+  const {ctxBoxingMatches, setCTXBoxingMatches, ctxFighters, setCTXFighters, ctxRounds, ctxScorecards} = useData();
   
 
   const API_BASE_URL = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
@@ -68,6 +68,9 @@ export default function Home() {
   return (
     <div id='home_container'>
       <h1>Recent Scorecards:</h1>
+      {
+        ctxScorecards?.map(s => (<UserScorecard isActive={false} scorecard={s} />))
+      }
       <h1 className='my-5'>Fights to score:</h1>
       {
         ctxBoxingMatches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={ctxFighters} key={index} />)

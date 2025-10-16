@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App d-flex flex-column min-vh-100 bg-body">
       <Header />
-      <main className='flex-grow-1'>
+      <main id='main' className='flex-grow-1'>
         <AppRoutes />
       </main>
       <Footer />

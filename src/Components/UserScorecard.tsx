@@ -8,6 +8,7 @@ import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS, ROUTES } from "../Utils/Constan
 import axios from "axios";
 import RoundScoresAndComment from "./RoundScoresAndComment";
 import { useNavigate } from "react-router-dom";
+import ScorecardTotals from "./ScorecardTotals";
 
 interface Props {
     scorecard: IScorecard,
@@ -26,7 +27,7 @@ export default function UserScorecard(props: Props) {
     const roundScoresToRender = []
     const navigate = useNavigate();
 
-    console.log(props)
+    // console.log(props)
 
     const API_BASE_URL =
         process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
@@ -121,8 +122,8 @@ export default function UserScorecard(props: Props) {
     }, [])
 
     return (
-        <div onClick={() => scoreFight(scorecard.scorecard_ID)} className='userScorecard mb-2 d-flex' style={{ width: '100%' }}>
-            <div className="d-flex flex-column mx-3 userScorecardScores" style={{ border: "1px solid", width: '100%' }}>
+        <div onClick={() => scoreFight(scorecard.scorecard_ID)} className='userScorecard mb-2 d-flex'>
+            <div className="d-flex flex-column mx-3 userScorecardScores" style={{ border: "1px solid"}}>
                 <div style={{ border: "1px solid" }}>
                     <span>&nbsp;</span>
                 </div>
@@ -136,7 +137,9 @@ export default function UserScorecard(props: Props) {
 
                             roundsForThisCard?.map(r => <RoundScoresAndComment round={r} />)
                         }
-                        {/* <RoundScoresAndComment /> */}
+                        {/* TOTAL */}
+                        <ScorecardTotals rounds={roundsForThisCard} />
+
                     </div>
                 </div>
                 <div style={{ border: "1px solid" }}>

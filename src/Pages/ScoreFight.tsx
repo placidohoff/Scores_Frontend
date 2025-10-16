@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Form, useLocation } from 'react-router-dom'
 import { UserScorecard } from '../Components'
 import { IScorecard } from '../Interfaces/IScorecard'
 import { IRound } from '../Interfaces/IRound';
 import { useData } from '../Context/data';
 import { IBoxingMatch } from '../Interfaces/IBoxingMatch';
 import { IFighter } from '../Interfaces/IFighter';
+import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS } from '../Utils/Constants';
+import axios from 'axios';
 
 interface IScoreRoundsProps {
     scorecard: IScorecard;
@@ -62,7 +64,7 @@ export default function ScoreFight() {
             }
         })
 
-        console.log(boxingMatch, 'MATCH')
+        // console.log(boxingMatch, 'MATCH')
 
     }
 
@@ -81,40 +83,95 @@ export default function ScoreFight() {
 
     const ScoreRound = (props: IScoreRoundsProps) => {
         const { scorecard, round } = props
-        const [fighterAScore, setFighterAScore] = useState<string>()
-        const [fighterBScore, setFighterBScore] = useState<string>()
+        const [fighterAScore, setFighterAScore] = useState<string>('10')
+        const [fighterBScore, setFighterBScore] = useState<string>('10')
         const [comments, setComments] = useState<string>()
 
-        const submitScore = () => {
-            console.log(comments, 'COMM')
+        const API_BASE_URL =
+            process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+                ? API_ROOTS.DEV
+                : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
+                    ? API_ROOTS.PROD
+                    : API_ROOTS.WORK
+
+        const API_ENDPOINT_ROUNDS =
+            process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+                ? API_ENDPOINTS.ROUNDS.DEV
+                : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
+                    ? API_ENDPOINTS.ROUNDS.PROD
+                    : API_ENDPOINTS.ROUNDS.WORK
+
+        const submitScore = async () => {
+            try{
+                const data = new FormData();
+            data.append("Scorecard_ID", String(scorecard.scorecard_ID));
+            data.append("RoundNumber", String(round?.roundNumber ?? 1));
+            data.append("FighterA_ID", String(round?.fighterA_ID ?? ''));
+            data.append("FighterB_ID", String(round?.fighterB_ID ?? ''));
+            data.append("FighterA_Score", fighterAScore);
+            data.append("FighterB_Score", fighterBScore);
+            data.append("Comments", comments ?? '');
+
+            const response = await axios.put(API_BASE_URL + API_ENDPOINT_ROUNDS, data, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            })
+
+            if (response.data.isSuccess) {
+                console.log('Round updated successfully:', response.data.result);
+                // Optionally advance to next round here
+            } else {
+                console.error('Error updating round:', response.data.message);
+            }
+            }catch(error){
+                console.error('PUT request failed:', error);
+            }
+            
+        }
+
+        const handleChangeScore = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+            let score = e.target.value;
+
+
+            if (Number.parseInt(e.target.value) > 10) {
+                score = '10';
+            } else if (Number.parseInt(e.target.value) < 6) {
+                score = '6'
+            }
+            if (id === "scoreA") {
+                setFighterAScore(score)
+            }
+
+            if (id === "scoreB") {
+                setFighterBScore(score)
+            }
         }
 
 
         return (
             <div className='d-flex flex-column align-items-center'>
-                Round {round?.roundNumber} of {scorecard.scheduledRounds}
-                <div className='mx-auto'>
-                    <div className='d-flex'>
+                <span className='bold'>Round {round?.roundNumber} of {scorecard.scheduledRounds}</span>
+                <div className='mx-auto d-flex flex-column align-items-end' style={{ padding: '10px', minWidth: '240px' }}>
+                    <div className='d-flex w-100 justify-content-end'>
                         <div>
-                            <p>{fighterA?.firstname + ' ' + fighterA?.lastname}</p>
+                            <p className='mx-2'>{fighterA?.firstname + ' ' + fighterA?.lastname}:</p>
                         </div>
                         <div>
-                            <input value={fighterAScore} onChange={e => setFighterAScore(e.target.value)} type="number" />
-                        </div>
-                    </div>
-                    <div className='d-flex'>
-                        <div>
-                            <p>{fighterB?.firstname + ' ' + fighterB?.lastname}</p>
-                        </div>
-                        <div>
-                            <input value={fighterBScore} onChange={e => setFighterBScore(e.target.value)} type="number" />
+                            <input className='score-round-input' value={fighterAScore} onChange={(e) => handleChangeScore(e, 'scoreA')} type="number" />
                         </div>
                     </div>
-                    <div className='d-flex'>
-                        <p>Comments:</p>
-                        <textarea name="comment" id="comment" value={comments} onChange={(e => setComments(e.target.value))}></textarea>
+                    <div className='d-flex w-100 justify-content-end'>
+                        <div>
+                            <p className='mx-2'>{fighterB?.firstname + ' ' + fighterB?.lastname}:</p>
+                        </div>
+                        <div>
+                            <input className='score-round-input' value={fighterBScore} onChange={e => handleChangeScore(e, 'scoreB')} type="number" />
+                        </div>
                     </div>
-                    <button onClick={() => submitScore()}>Submit Score</button>
+                    <div className='d-flex flex-column align-items-baseline'>
+                        <p className='mb-0'>Comments:</p>
+                        <textarea style={{ width: '16vw', height: '16vh' }} className='mb-4 mx-auto' name="comment" id="comment" value={comments} onChange={(e => setComments(e.target.value))}></textarea>
+                    </div>
+                    <button className='py-2' style={{ width: "88%", marginLeft: 'auto' }} onClick={() => submitScore()}>Submit Score</button>
 
                     {/* <button>Submit Score</button> */}
                 </div>
