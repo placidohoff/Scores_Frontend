@@ -79,7 +79,7 @@ export default function UserScorecard(props: Props) {
     const scoreFight = (cardID: number) => {
         if (isActive) {
             navigate(ROUTES.SCORE_FIGHT, {
-                state: { scorecard: scorecard, rounds: roundsForThisCard }
+                state: { scorecard: scorecard, rounds: roundsForThisCard, fighterA: fighterA, fighterB: fighterB }
 
             })
         }
@@ -101,7 +101,7 @@ export default function UserScorecard(props: Props) {
         const findMatchingRounds = () => {
             const rounds = ctxRounds.filter(r => r.scorecard_ID === scorecard.scorecard_ID)
             setRoundsForThisCard(rounds);
-            console.log(rounds)
+            // console.log(rounds)
         }
 
         findMatchingFighters();
