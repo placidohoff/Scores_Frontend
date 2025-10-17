@@ -9,8 +9,9 @@ import { useData } from '../Context/data';
 export default function Home() {
   const [matches, setMatches] = useState<IBoxingMatch[]>();
   const [fighters, setFighters] = useState<IFighter[]>([]);
-  const {ctxBoxingMatches, setCTXBoxingMatches, ctxFighters, setCTXFighters, ctxRounds, ctxScorecards} = useData();
-  
+  const { ctxBoxingMatches, setCTXBoxingMatches, ctxFighters, setCTXFighters, ctxRounds, ctxScorecards } = useData();
+  const [isLoaded, setIsLoaded] = useState(false)
+
 
   const API_BASE_URL = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
     ? API_ROOTS.DEV
@@ -29,6 +30,7 @@ export default function Home() {
     : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
       ? API_ENDPOINTS.FIGHTERS.PROD
       : API_ENDPOINTS.FIGHTERS.WORK
+
 
   useEffect(() => {
     const getMatches = async () => {
@@ -63,19 +65,29 @@ export default function Home() {
     getMatches();
     getFighters();
     console.log(ctxBoxingMatches)
+
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500); // 0.5 seconds
+
+    return () => clearTimeout(timer); // Clean up
   }, [])
 
   return (
-    <div id='home_container'>
-      <h1>Recent Scorecards:</h1>
-      {
-        ctxScorecards?.map(s => (<UserScorecard isActive={false} scorecard={s} />))
-      }
-      <h1 className='my-5'>Fights to score:</h1>
-      {
-        ctxBoxingMatches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={ctxFighters} key={index} />)
-        
-      }
+    <div id='home_container' style={{ marginTop: '70%' }} className={`d-flex ${isLoaded ? 'main-loaded' : ''}`}>
+      <div>
+        <h1>Recent Scorecards:</h1>
+        {
+          ctxScorecards?.map(s => (<UserScorecard isActive={false} scorecard={s} />))
+        }
+      </div>
+      <div>
+        <h1 className='my-5'>Fights to score:</h1>
+        {
+          ctxBoxingMatches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={ctxFighters} key={index} />)
+
+        }
+      </div>
     </div>
   )
 }

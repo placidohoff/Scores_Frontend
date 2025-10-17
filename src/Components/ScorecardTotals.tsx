@@ -25,7 +25,7 @@ export default function ScorecardTotals(props: Props) {
 
     return (
 
-        <div className="d-flex flex-column p-2 justify-content-evenly" style={{ border: '1px solid' }}>
+        <div className="scorecard-cell d-flex flex-column p-2 justify-content-evenly" style={{ border: '1px solid' }}>
             {/* <p style={{ position: 'absolute', marginTop: '-140px', marginLeft: '14px' }}>{round.roundNumber}</p> */}
             <p style={{ position: 'absolute', marginTop: '-112px', marginLeft: '7px', fontWeight: 'bold' }}>T</p>
             <p className='bold'>{totalA}</p>

@@ -83,3 +83,136 @@
   /* example sizing */
   width: 100%;
 }
+
+#home_container{
+
+  transition: transform 1s ease-out;
+  /* transform: translate(0, -50%); */
+}
+
+.main-loaded{
+  transform: translate(0, -90%); 
+}
+
+.app{
+   color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+h1{
+  color: white !important;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* p{
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 1rem auto 0;
+  line-height: 1.6;
+  color: #e0e0e0;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+} */
+
+
+.userScorecard {
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent dark */
+  border: 2px solid #444;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.userScorecard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.userScorecardScores {
+  background-color: rgba(20, 20, 20, 0.8);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.userScorecardScores p {
+  margin: 0;
+  font-weight: 500;
+  color: #eee;
+}
+
+.userScorecardScores > div:first-child,
+.userScorecardScores > div:last-child {
+  height: 5px;
+  background: linear-gradient(to right, #ff0000, #000, #007bff); /* red to blue ring theme */
+}
+
+.view-card-button {
+  margin: 0.25rem 0;
+  font-weight: bold;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  /* transition: background 0.3s ease, color 0.3s ease; */
+}
+
+.view-card-button:hover {
+  background-color: currentColor;
+  color: #fff;
+}
+
+
+.scorecard-cell {
+  min-width: 50px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #555;
+  border-radius: 6px;
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.scorecard-cell p {
+  margin: 4px 0;
+}
+
+.scorecard-cell .bold {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #FFD700; /* gold for emphasis */
+}
+
+.scorecard-cell:hover {
+  background-color: rgba(30, 30, 30, 0.85);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.boxingMatchCard {
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.boxingMatchCard:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: scale(1.02);
+  border-bottom: 1px solid #FFD700; /* gold accent on hover */
+}
+
+.boxingMatchCard p {
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}

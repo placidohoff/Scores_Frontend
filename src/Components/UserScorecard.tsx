@@ -122,12 +122,12 @@ export default function UserScorecard(props: Props) {
     }, [])
 
     return (
-        <div onClick={() => scoreFight(scorecard.scorecard_ID)} className='userScorecard mb-2 d-flex'>
+        <div onClick={() => scoreFight(scorecard.scorecard_ID)} className='userScorecard mb-2 d-flex justify-content-center'>
             <div className="d-flex flex-column mx-3 userScorecardScores" style={{ border: "1px solid"}}>
                 <div style={{ border: "1px solid" }}>
                     <span>&nbsp;</span>
                 </div>
-                <div className="d-flex">
+                <div className="scorecard-cell d-flex">
                     <div className="d-flex flex-column" style={{ textAlign: 'left', borderRight: '1px solid', width: 'fit-content' }}>
                         <p className="px-2">{fighterA?.firstname + ' ' + fighterA?.lastname}</p>
                         <p className="px-2" style={{ borderTop: '1px solid' }}>{fighterB?.firstname + ' ' + fighterB?.lastname}</p>
