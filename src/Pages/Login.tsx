@@ -6,7 +6,7 @@ import axios from 'axios';
 import { Console } from 'console';
 import { LoginSimulation } from '../Utils/LoginSimulation';
 import { LoginLogic } from '../Utils/LoginLogic';
-import { ViewListUserScorecards } from '../Components';
+import { FadeInSection, ViewListUserScorecards } from '../Components';
 
 export default function Login() {
   const { auth, setAuth } = useAuth();
@@ -96,18 +96,19 @@ export default function Login() {
 
   return (
 
-    <div className="page-component">
-      <div className="container">
-        <div className="row">
-          {
-            !isLoggedIn &&
-            <>
-              <h2 className="my-5 mx-auto justify-content-center">
-                Login to your account
-              </h2>
-              <div className="col-md-6 offset-md-3">
-                <form className='d-flex flex-column' onSubmit={handleSubmit} style={{ marginBottom: "100px" }}>
-                  {/* <label className="form-label">
+    <FadeInSection>
+      <div className="page-component">
+        <div className="container">
+          <div className="row back-color-box b-rad-10 mt-4">
+            {
+              !isLoggedIn &&
+              <>
+                <h2 className="my-5 mx-auto justify-content-center">
+                  Login to your account
+                </h2>
+                <div className="col-md-6 offset-md-3">
+                  <form className='d-flex flex-column' onSubmit={handleSubmit} style={{ marginBottom: "100px" }}>
+                    {/* <label className="form-label">
                 Email:
                 <input
                   type="email"
@@ -118,53 +119,54 @@ export default function Login() {
                 />
               </label> */}
 
-                  <label style={{ textAlign: 'left' }} className="form-label">
-                    Username:
-                    <input
-                      type="text"
-                      className="form-control mb-4 p-2"
-                      // placeholder="Email"
-                      value={displayName}
-                      onChange={(e) => setDisplayName(e.target.value)}
-                    />
-                  </label>
+                    <label style={{ textAlign: 'left' }} className="form-label">
+                      Username:
+                      <input
+                        type="text"
+                        className="form-control mb-4 p-2"
+                        // placeholder="Email"
+                        value={displayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
+                      />
+                    </label>
 
-                  <label style={{ textAlign: 'left' }} className="form-label">
-                    Password:
-                    <input
-                      type="password"
-                      className="form-control mb-4 p-2"
-                      // placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </label>
+                    <label style={{ textAlign: 'left' }} className="form-label">
+                      Password:
+                      <input
+                        type="password"
+                        className="form-control mb-4 p-2"
+                        // placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </label>
 
-                  <button
-                    className="btn btn-alpha d-flex justify-content-center mx-auto"
-                    type="submit"
-                  >
-                    Login
-                  </button>
+                    <button
+                      className="btn btn-alpha btn-gold d-flex justify-content-center mx-auto px-5"
+                      type="submit"
+                    >
+                      Login
+                    </button>
 
 
-                  <Link
-                    className="btn btn-bravo d-flex justify-content-center mx-auto mt-3"
-                    to={"/register"}
-                  >
-                    Become a member
-                  </Link>
-                </form>
-              </div>
-            </>
-          }
-          {
-            isLoggedIn && <Welcome />
+                    <Link
+                      className="btn btn-bravo btn-outline d-flex justify-content-center mx-auto mt-5"
+                      to={"/register"}
+                    >
+                      Register Now
+                    </Link>
+                  </form>
+                </div>
+              </>
+            }
+            {
+              isLoggedIn && <Welcome />
 
-          }
+            }
 
+          </div>
         </div>
       </div>
-    </div>
+    </FadeInSection>
   )
 }

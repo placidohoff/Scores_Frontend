@@ -33,7 +33,7 @@ export default function Header() {
   }, [])
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand mx-3" to="/">
         Majority Decision
       </Link>

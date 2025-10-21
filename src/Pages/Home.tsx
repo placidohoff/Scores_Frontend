@@ -5,6 +5,7 @@ import { IBoxingMatch } from '../Interfaces/IBoxingMatch';
 import { BoxingMatchCard, UserScorecard } from '../Components';
 import { IFighter } from '../Interfaces/IFighter';
 import { useData } from '../Context/data';
+import { FadeInSection } from '../Components/FadeInSection';
 
 export default function Home() {
   const [matches, setMatches] = useState<IBoxingMatch[]>();
@@ -74,20 +75,22 @@ export default function Home() {
   }, [])
 
   return (
-    <div id='home_container' style={{ marginTop: '70%' }} className={`d-flex ${isLoaded ? 'main-loaded' : ''}`}>
-      <div>
-        <h1>Recent Scorecards:</h1>
-        {
-          ctxScorecards?.map(s => (<UserScorecard isActive={false} scorecard={s} />))
-        }
-      </div>
-      <div>
-        <h1 className='my-5'>Fights to score:</h1>
-        {
-          ctxBoxingMatches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={ctxFighters} key={index} />)
+    <div id='home_container' className={`d-flex justify-content-center ${isLoaded ? 'fade-in' : ''}`}>
+      <FadeInSection>
+        <div>
+          <h1>Recent Scorecards:</h1>
+          {
+            ctxScorecards?.map(s => (<UserScorecard isActive={false} scorecard={s} />))
+          }
+        </div>
+        <div>
+          <h1 className='my-5'>Fights to score:</h1>
+          {
+            ctxBoxingMatches?.map((m, index) => <BoxingMatchCard boxingMatch={m} fighters={ctxFighters} key={index} />)
 
-        }
-      </div>
+          }
+        </div>
+      </FadeInSection>
     </div>
   )
 }

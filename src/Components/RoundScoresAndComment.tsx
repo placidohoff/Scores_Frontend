@@ -12,7 +12,7 @@ export default function RoundScoresAndComment(props: Props) {
             {/* <p style={{ position: 'absolute', marginTop: '-140px', marginLeft: '14px' }}>{round.roundNumber}</p> */}
             <p style={{ position: 'absolute', marginTop: '-112px', marginLeft: '10px' }}>{round.roundNumber}</p>
             <p>{round.isScored? round.fighterA_Score : ' --- '}</p>
-            <p>{round.isScored? round.fighterA_Score : ' --- '}</p>
+            <p>{round.isScored? round.fighterB_Score : ' --- '}</p>
             <p style={{ position: 'absolute', marginTop: '80px' }}>&nbsp;</p>
 
         </div>

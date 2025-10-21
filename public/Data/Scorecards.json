@@ -17,9 +17,9 @@
       "user": null
     },
     {
-      "scorecard_ID": 18,
+      "scorecard_ID": 19,
       "boxingMatch_ID": 2,
-      "user_ID": "dad05102-b1c8-488e-a26a-4dbe2536e167",
+      "user_ID": "7054809e-dd38-4a59-973f-679f2c99062b",
       "ruling": null,
       "totalRoundsFought": null,
       "fighterA_ScoreTotal": null,
@@ -30,9 +30,9 @@
       "user": null
     },
     {
-      "scorecard_ID": 19,
-      "boxingMatch_ID": 2,
-      "user_ID": "7054809e-dd38-4a59-973f-679f2c99062b",
+      "scorecard_ID": 22,
+      "boxingMatch_ID": 3,
+      "user_ID": "dad05102-b1c8-488e-a26a-4dbe2536e167",
       "ruling": null,
       "totalRoundsFought": null,
       "fighterA_ScoreTotal": null,

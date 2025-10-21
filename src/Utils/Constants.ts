@@ -12,7 +12,9 @@ export const ROUTES = {
     SCORE_FIGHT: "/score-fight",
     SCORE_ROUND: "/score-round",
     VIEW_MY_SCORES: "/my-scorecards",
-    CREATE_ROUNDS_NEW_SCORECARD: '/create-rounds'
+    CREATE_ROUNDS_NEW_SCORECARD: '/create-rounds',
+    RECENT_SCORECARDS: '/recent-scores',
+    RECENT_FIGHTS: '/recent-fights'
 }
 
 export const ENVIRONMENTS = {
@@ -53,6 +55,11 @@ export const API_ENDPOINTS = {
         WORK: 'Rounds.json',
         PROD: '',
         CREATE_ROUNDS_DEV: 'Round/create-rounds'
+    },
+    COMMENTS:{
+        DEV: 'Comment',
+        WORK: 'Comments.json',
+        PROD: ''
     }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../Context/auth'
-import { ViewListUserScorecards } from '../Components';
+import { FadeInSection, ViewListUserScorecards } from '../Components';
 // import { useData } from '../Context/data';
 
 export default function ViewMyScorecards() {
@@ -9,7 +9,9 @@ export default function ViewMyScorecards() {
   return (
     <>
       <h1>Welcome {auth.user}</h1>
-      <ViewListUserScorecards />
+      <FadeInSection>
+        <ViewListUserScorecards />
+      </FadeInSection>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from '../Utils/Constants'
-import { CreateFighter, CreateMatch, CreateScorecard, Dashboard, Home, Login, Register, ScoreFight, ScoreRound, ViewMyScorecards, ViewScorecardRound, ViewScorecardTotal } from '../Pages/Index'
+import { CreateFighter, CreateMatch, CreateScorecard, Dashboard, Home, Login, RecentFights, RecentScores, Register, ScoreFight, ScoreRound, ViewMyScorecards, ViewScorecardRound, ViewScorecardTotal } from '../Pages/Index'
 import NotFound from '../Pages/NotFound'
 import PrivateRoute from './PrivateRoute'
 import AdminRoute from './AdminRoute'
@@ -15,9 +15,11 @@ export default function AppRoutes() {
     return (
 
         <Routes>
-            <Route path={ROUTES.HOME} element={<Home />} />
+            <Route path={ROUTES.HOME} element={<RecentFights />} />
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.REGISTER} element={<Register />} />
+            <Route path={ROUTES.RECENT_FIGHTS} element={<RecentFights />}/>
+            <Route path={ROUTES.RECENT_SCORECARDS} element={<RecentScores />}/>
             <Route element={<PrivateRoute />}>
                 <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
                 <Route path={ROUTES.VIEW_MY_CARDS} element={<ViewMyScorecards />} />

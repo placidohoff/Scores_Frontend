@@ -10,5 +10,7 @@ import CreateMatch from "./CreateMatch";
 import CreateFighter from "./CreateFighter";
 import ScoreRound from "./ScoreRound";
 import ScoreFight from "./ScoreFight";
+import RecentFights from "./RecentFights";
+import RecentScores from "./RecentScores";
 
-export {Home, Login, Register, Dashboard, ViewMyScorecards, CreateScorecard, ViewScorecardRound, ViewScorecardTotal, CreateMatch, CreateFighter, ScoreRound, ScoreFight}
+export {Home, Login, Register, Dashboard, ViewMyScorecards, CreateScorecard, ViewScorecardRound, ViewScorecardTotal, CreateMatch, CreateFighter, ScoreRound, ScoreFight, RecentFights, RecentScores}

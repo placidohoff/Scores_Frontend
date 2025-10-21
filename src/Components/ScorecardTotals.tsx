@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { IRound } from '../Interfaces/IRound'
+import { IScorecard } from '../Interfaces/IScorecard'
 
 interface Props {
     rounds: IRound[] | undefined
+    scorecard: IScorecard
 }
 
 export default function ScorecardTotals(props: Props) {
     const { rounds } = props
     const [totalA, setTotalA] = useState(0)
     const [totalB, setTotalB] = useState(0)
+    
 
     useEffect(() => {
         let fighterATotal = 0; let fighterBTotal = 0;
+        
+        // console.log(rounds, 'ROUNDS')
         rounds?.forEach(r => {
             if(r.isScored){
                 fighterATotal += r.fighterA_Score
@@ -21,7 +26,24 @@ export default function ScorecardTotals(props: Props) {
 
         setTotalA(fighterATotal)
         setTotalB(fighterBTotal)
+        // alert('test')
     }, [])
+
+    useEffect(() => {
+        let fighterATotal = 0; let fighterBTotal = 0;
+        
+        // console.log(rounds, 'ROUNDS')
+        rounds?.forEach(r => {
+            if(r.isScored){
+                fighterATotal += r.fighterA_Score
+                fighterBTotal += r.fighterB_Score
+            }
+        })
+
+        setTotalA(fighterATotal)
+        setTotalB(fighterBTotal)
+        // alert('test')
+    }, [rounds])
 
     return (
 

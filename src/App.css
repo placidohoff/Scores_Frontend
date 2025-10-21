@@ -1,3 +1,63 @@
+
+.btn {
+  padding: 0.5rem 1.25rem !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease, transform 0.1s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Green - Success / Primary Action */
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  transform: scale(1.03);
+}
+
+/* Red - Delete / Destructive Action */
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  transform: scale(1.03);
+}
+
+/* Outline version */
+.btn-outline {
+  background: transparent !important;
+  border: 2px solid #fff !important;
+  color: #fff !important;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.03);
+}
+
+/* Gold Champion Button */
+.btn-gold {
+  background: linear-gradient(to right, #FFD700, #FFA500);
+  color: #000;
+}
+
+.btn-gold:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+
+
 .App {
   text-align: center;
 }
@@ -16,7 +76,8 @@
 .boxingMatchCard {
   /* text-decoration: underline; */
   border-bottom: 1px solid;
-  width: 25%;
+  border-radius: 10px;
+  /* width: 25%; */
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
@@ -46,11 +107,17 @@
   transform: scale(1.09);
 }
 
-.userScorecard>div {
+/* .userScorecard>div {
 
   box-shadow: 0 0.125em 0.2em;
   border-radius: 8px;
   background-color: gainsboro;
+} */
+
+.userScorecardScoreOrDeleteBtn{
+  box-shadow: 0 0.125em 0.2em;
+  border-radius: 8px;
+  background-color: gainsboro !important;
 }
 
 
@@ -216,3 +283,49 @@ h1{
   letter-spacing: 0.5px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
+
+.back-color-box{
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(100px); /* Start with a slight upward movement */
+    transition: opacity .5s ease-out, transform .5s ease-out;
+  }
+  
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0); /* Bring back to original position */
+  }
+
+  .score-up-down{
+    border: 1px solid;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    margin: 0px 5px 0px 5px;
+    font-size: larger;
+    width: 25px;
+    justify-content: center;
+  }
+
+  .score-up-down:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+
+  .b-rad-10{
+    border-radius: 10px;
+  }
+
+  .b-rad-20{
+    border-radius: 20px;
+  }
+  .text-left{
+    text-align: left;
+  }
+
+
