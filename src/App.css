@@ -328,4 +328,10 @@ h1{
     text-align: left;
   }
 
+.inputAlpha{
+ max-width: 220px;
+}
 
+.inputBravo{
+  width: 100px;
+}

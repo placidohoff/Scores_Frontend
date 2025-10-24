@@ -18,7 +18,7 @@ const CreateBoxingMatch = () => {
         : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
             ? API_ROOTS.PROD
             : API_ROOTS.WORK
-    
+
     const API_ENDPOINT_FIGHTERS = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
         ? API_ENDPOINTS.FIGHTERS.DEV
         : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
@@ -66,7 +66,7 @@ const CreateBoxingMatch = () => {
 
         try {
             const response = await axios.post(
-                API_BASE_URL+ API_ENDPOINT_MATCHES,
+                API_BASE_URL + API_ENDPOINT_MATCHES,
                 data,
                 {
                     headers: {
@@ -83,60 +83,62 @@ const CreateBoxingMatch = () => {
     };
 
     return (
-        <div className="container mx-auto p-6 max-w-md bg-gray-100 rounded-lg shadow-lg">
+        <div className="container mx-auto p-6 max-w-md bg-gray-100 rounded-lg shadow-lg back-color-box mt-5" style={{ borderRadius: "20px", maxWidth: '1000px' }}>
             <h2 className="text-2xl font-semibold mb-4 text-center">
                 Create Boxing Match
             </h2>
-            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-                <label style={{textAlign: 'left'}} className="font-medium">Fighter A:</label>
-                <select
-                    name="FighterA_ID"
-                    value={formData.FighterA_ID}
-                    onChange={handleChange}
-                    className="border rounded p-2"
-                    required
-                >
-                    <option value="">Select Fighter A</option>
-                    {fighters?.map((fighter) => (
-                        <option key={fighter.fighter_ID} value={fighter.fighter_ID}>
-                            {fighter.firstname} {fighter.lastname}
-                        </option>
-                    ))}
-                </select>
+            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 align-items-center">
+                <div className="d-flex flex-column">
+                    <label style={{ textAlign: 'left' }} className="font-medium mt-3">Fighter A:</label>
+                    <select
+                        name="FighterA_ID"
+                        value={formData.FighterA_ID}
+                        onChange={handleChange}
+                        className="border rounded p-2 inputAlpha"
+                        required
+                        title="Select Figher A"
+                    >
+                        <option value="">Select Fighter A</option>
+                        {fighters?.map((fighter) => (
+                            <option key={fighter.fighter_ID} value={fighter.fighter_ID}>
+                                {fighter.firstname} {fighter.lastname}
+                            </option>
+                        ))}
+                    </select>
 
-                <label style={{textAlign: 'left'}} className="font-medium">Fighter B:</label>
-                <select
-                    name="FighterB_ID"
-                    value={formData.FighterB_ID}
-                    onChange={handleChange}
-                    className="border rounded p-2"
-                    required
-                >
-                    <option value="">Select Fighter B</option>
-                    {fighters?.map((fighter) => (
-                        <option key={fighter.fighter_ID} value={fighter.fighter_ID}>
-                            {fighter.firstname} {fighter.lastname}
-                        </option>
-                    ))}
-                </select>
-                <label style={{textAlign: 'left'}} className="font-medium">Scheduled Rounds:</label>
-                <input
-                    type="number"
-                    name="ScheduledRounds"
-                    value={formData.ScheduledRounds}
-                    onChange={handleChange}
-                    className="border rounded p-2"
-                    style={{width: '25%'}}
-                    required
-                />
+                    <label style={{ textAlign: 'left' }} className="font-medium mt-3">Fighter B:</label>
+                    <select
+                        name="FighterB_ID"
+                        value={formData.FighterB_ID}
+                        onChange={handleChange}
+                        className="border rounded p-2 inputAlpha"
+                        required
+                    >
+                        <option value="">Select Fighter B</option>
+                        {fighters?.map((fighter) => (
+                            <option key={fighter.fighter_ID} value={fighter.fighter_ID}>
+                                {fighter.firstname} {fighter.lastname}
+                            </option>
+                        ))}
+                    </select>
+                    <label style={{ textAlign: 'left' }} className="font-medium mt-3">Scheduled Rounds:</label>
+                    <input
+                        type="number"
+                        name="ScheduledRounds"
+                        value={formData.ScheduledRounds}
+                        onChange={handleChange}
+                        className="border rounded p-2"
+                        required
+                    />
 
-                <button
-                    type="submit"
-                    className="bg-blue-600 py-2 px-4 rounded hover:bg-blue-700 mx-auto mb-4"
-                    style={{width: "50%"}}
-                >
-                    Submit
-                </button>
+                    <button
+                        type="submit"
+                        className="bg-blue-600 py-2 px-4 rounded hover:bg-blue-700 my-4"
+                        // style={{ width: "50%" }}
+                    >
+                        Submit
+                    </button>
+                </div>
             </form>
 
             {status && <p className="mt-4 text-center">{status}</p>}

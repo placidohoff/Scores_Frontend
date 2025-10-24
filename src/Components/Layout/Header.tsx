@@ -84,8 +84,8 @@ export default function Header() {
                       Admin Menu
                     </a>
                     <ul className={isDropDownOpen ? "dropdown-menu show" : "dropdown-menu"}>
-                      <li><a className="dropdown-item" href="#">Create Match</a></li>
-                      <li><a className="dropdown-item" href="#">Create Fighter</a></li>
+                      <li><Link className="dropdown-item" to={ROUTES.CREATE_MATCH}>Create Match</Link></li>
+                      <li><Link className="dropdown-item" to={ROUTES.CREATE_FIGHTER}>Create Fighter</Link></li>
                       {/* <li><hr className="dropdown-divider"></li> */}
                     </ul>
                   </li>
