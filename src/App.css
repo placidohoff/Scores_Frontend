@@ -335,3 +335,7 @@ h1{
 .inputBravo{
   width: 100px;
 }
+
+.border-20{
+  border-radius: 20px;
+}

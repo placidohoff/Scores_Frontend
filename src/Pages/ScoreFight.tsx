@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Form, useLocation, useNavigate } from 'react-router-dom'
-import { FadeInSection, ScoreRound, UserScorecard } from '../Components'
+import { CommentsForScorecard, FadeInSection, ScoreRound, UserScorecard } from '../Components'
 import { IScorecard } from '../Interfaces/IScorecard'
 import { IRound } from '../Interfaces/IRound';
 import { useData } from '../Context/data';
@@ -163,6 +163,9 @@ export default function ScoreFight() {
             <div className='mx-auto' style={{ maxWidth: '90%' }}>
                 <FadeInSection>
                     <UserScorecard isActive={false} scorecard={location.state.scorecard} />
+                </FadeInSection>
+                <FadeInSection>
+                  <CommentsForScorecard fighterAName={fighterA.firstname + ' ' + fighterA.lastname} fighterBName={fighterB.firstname + ' ' + fighterB.lastname} scorecard={location.state.scorecard} />
                 </FadeInSection>
             </div>
             <FadeInSection>

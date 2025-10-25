@@ -65,35 +65,38 @@ const CreateFighter = () => {
     };
 
     return (
-        <div className="container mx-auto p-6 max-w-md bg-gray-100 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
-                Create Fighter
-            </h2>
-            <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-                <label style={{ textAlign: 'left' }} className="font-medium">Firstname:</label>
-                <input
-                    type="text"
-                    value={fighterFirstName}
-                    onChange={(e) => setFighterFirstName(e.target.value)}
-                />
+        <div className="container mx-auto p-6 max-w-md bg-gray-100 rounded-lg shadow-lg back-color-box mt-5 border-20 justify-content-center d-flex">
+            <div className="d-flex flex-column">
+                <h2 className="text-2xl font-semibold mb-4 text-center">
+                    Create Fighter
+                </h2>
+                <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+                    <label style={{ textAlign: 'left' }} className="font-medium">Firstname:</label>
+                    <input
+                        type="text"
+                        value={fighterFirstName}
+                        onChange={(e) => setFighterFirstName(e.target.value)}
+                        className="inputAlpha"
+                    />
 
-                <label style={{ textAlign: 'left' }} className="font-medium">Lastname</label>
-                <input
-                    type="text"
-                    value={fighterLastName}
-                    onChange={(e) => setFighterLastName(e.target.value)}
-                />
-        
+                    <label style={{ textAlign: 'left' }} className="font-medium">Lastname</label>
+                    <input
+                        type="text"
+                        value={fighterLastName}
+                        onChange={(e) => setFighterLastName(e.target.value)}
+                        className="inputAlpha"
+                    />
 
-                <button
-                    type="submit"
-                    className="bg-blue-600 py-2 px-4 rounded hover:bg-blue-700 mx-auto mb-4"
-                    style={{ width: "50%" }}
-                >
-                    Submit
-                </button>
-            </form>
 
+                    <button
+                        type="submit"
+                        className="bg-blue-600 py-2 px-4 rounded hover:bg-blue-700 mx-auto mb-4"
+                        style={{ width: "100%" }}
+                    >
+                        Submit
+                    </button>
+                </form>
+            </div>
             {status && <p className="mt-4 text-center">{status}</p>}
         </div>
     );
