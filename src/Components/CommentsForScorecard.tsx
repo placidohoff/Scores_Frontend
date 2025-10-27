@@ -18,7 +18,7 @@ interface Props {
 
 export default function CommentsForScorecard(props: Props) {
     const { ctxFighters, ctxBoxingMatches, ctxRounds } = useData();
-    const { scorecard } = props;
+    const { scorecard, fighterAName, fighterBName } = props;
     const [fighterA, setFighterA] = useState<IFighter>();
     const [fighterB, setFighterB] = useState<IFighter>();
     const [roundsForThisCard, setRoundsForThisCard] = useState<IRound[]>([]);
@@ -85,13 +85,13 @@ export default function CommentsForScorecard(props: Props) {
         <div
             //   onClick={() => scoreFight(scorecard.scorecard_ID)}
             style={{ width: "90%" }}
-            className="userScorecard mb-2 d-flex justify-content-center mx-auto"
+            className=" mb-2 d-flex justify-content-center"
         >
             <div
                 className="d-flex flex-column mx-3 userScorecardScores"
-                style={{ border: "1px solid" }}
+                style={{ border: "1px solid", background: 'black'}}
             >
-                <div style={{ border: "1px solid" }}>
+                <div style={{ border: "1px solid", background: "black" }}>
                     <span>&nbsp;</span>
                 </div>
                 <div className="scorecard-cell d-flex">
@@ -103,14 +103,14 @@ export default function CommentsForScorecard(props: Props) {
                             width: "fit-content",
                         }}
                     >
-                        <p className="px-2">
-                            {fighterA?.firstname} {fighterA?.lastname}
+                        <p className="px-2 invisible">
+                            {fighterAName}
                         </p>
                         <p
-                            className="px-2"
+                            className="px-2 invisible"
                             style={{ borderTop: "1px solid" }}
                         >
-                            {fighterB?.firstname} {fighterB?.lastname}
+                            {fighterBName}
                         </p>
                     </div>
                     <div className="d-flex">
@@ -118,14 +118,23 @@ export default function CommentsForScorecard(props: Props) {
                             // <RoundScoresAndComment key={r.round_ID} round={r} />
                             <CommentsIcon key={r.round_ID} round={r} />
                         ))}
-                        {/* TOTAL */}
-                        {/* <ScorecardTotals
-              scorecard={scorecard}
-              rounds={roundsForThisCard}
-            /> */}
+
+                        {/* ADDING A BLANK .SCOREROUND-CELL FOR COMMENTS OF THE TOTAL SCORES*/}
+                        {/* PASSING IN A BLANK ROUND AS A PROP FOR ROUND */}
+                        <CommentsIcon round={{
+                            round_ID: 0,
+                            scorecard_ID: 0,
+                            roundNumber: 0,
+                            fighterA_Score: 0,
+                            fighterB_Score: 0,
+                            fighterA_ID: 0,
+                            fighterB_ID: 0,
+                            isScored: true,
+                            scorecard: null
+                        }} />
                     </div>
                 </div>
-                <div style={{ border: "1px solid" }}>
+                <div style={{ border: "1px solid", background: 'black' }}>
                     <span>&nbsp;</span>
                 </div>
             </div>

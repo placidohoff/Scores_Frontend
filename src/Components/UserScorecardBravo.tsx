@@ -16,7 +16,7 @@ interface Props {
   isActive: boolean;
 }
 
-export default function UserScorecard({ scorecard, isActive }: Props) {
+export default function UserScorecardBravo({ scorecard, isActive }: Props) {
   const { ctxFighters, ctxBoxingMatches, ctxRounds } = useData();
   const [fighterA, setFighterA] = useState<IFighter>();
   const [fighterB, setFighterB] = useState<IFighter>();
@@ -103,8 +103,8 @@ export default function UserScorecard({ scorecard, isActive }: Props) {
   return (
     <div
       onClick={() => scoreFight(scorecard.scorecard_ID)}
-      style={{ width: "90%" }}
-      className={`userScorecard mb-2 d-flex justify-content-center mx-auto ${
+      style={{ width: "80%" }}
+      className={`userScorecardBravo mb-2 d-flex justify-content-center mx-auto ${
     isActive ? "active" : ""
   }`}
     >
@@ -136,7 +136,7 @@ export default function UserScorecard({ scorecard, isActive }: Props) {
           </div>
           <div className="d-flex">
             {roundsForThisCard?.map((r) => (
-              <RoundScoresAndComment key={r.round_ID} round={r} />
+              <RoundScoresAndComment isBravo={true} key={r.round_ID} round={r} />
             ))}
             {/* TOTAL */}
             <ScorecardTotals

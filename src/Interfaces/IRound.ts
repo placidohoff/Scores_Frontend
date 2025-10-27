@@ -9,3 +9,4 @@ export interface IRound {
   isScored: boolean;
   scorecard?: any; //NAVIGATION PROP
 }
+

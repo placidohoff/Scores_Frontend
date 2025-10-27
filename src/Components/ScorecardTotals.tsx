@@ -5,10 +5,11 @@ import { IScorecard } from '../Interfaces/IScorecard'
 interface Props {
     rounds: IRound[] | undefined
     scorecard: IScorecard
+    isBravo?: boolean
 }
 
 export default function ScorecardTotals(props: Props) {
-    const { rounds } = props
+    const { rounds, isBravo } = props
     const [totalA, setTotalA] = useState(0)
     const [totalB, setTotalB] = useState(0)
     
@@ -49,10 +50,10 @@ export default function ScorecardTotals(props: Props) {
 
         <div className="scorecard-cell d-flex flex-column p-2 justify-content-evenly" style={{ border: '1px solid' }}>
             {/* <p style={{ position: 'absolute', marginTop: '-140px', marginLeft: '14px' }}>{round.roundNumber}</p> */}
-            <p style={{ position: 'absolute', marginTop: '-112px', marginLeft: '7px', fontWeight: 'bold' }}>T</p>
+            {isBravo && <p style={{ position: 'absolute', marginTop: '-112px', marginLeft: '7px', fontWeight: 'bold' }}>T</p>}
             <p className='bold'>{totalA}</p>
             <p className='bold'>{totalB}</p>
-            <p style={{ position: 'absolute', marginTop: '80px' }}>&nbsp;</p>
+            {isBravo && <p style={{ position: 'absolute', marginTop: '80px' }}>&nbsp;</p>}
 
         </div>
 

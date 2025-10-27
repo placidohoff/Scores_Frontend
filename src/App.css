@@ -100,7 +100,7 @@
 
 .userScorecardScores:hover {
   cursor: pointer;
-  transform: scale(1.009);
+  /* transform: scale(1.009); */
 }
 
 .userScorecard>button:hover {
@@ -194,6 +194,18 @@ h1{
   color: #fff;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.userScorecardBravo {
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent dark */
+  border: 2px solid #444;
+  border-radius: 10px;
+  padding: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .userScorecard:hover {
@@ -204,7 +216,8 @@ h1{
 .userScorecardScores {
   background-color: rgba(20, 20, 20, 0.8);
   border-radius: 6px;
-  overflow: hidden;
+  width: fit-content;
+  /* overflow: hidden; */
 }
 
 .userScorecardScores p {
@@ -338,4 +351,21 @@ h1{
 
 .border-20{
   border-radius: 20px;
+}
+
+.scoreround-cell{
+  /* width: 20px; */
+  width: 40px;
+}
+
+.comment-icon{
+  font-size: x-large;
+}
+
+.comment-icon:hover{
+  transform: scale(1.05);
+}
+
+.invisible{
+  opacity: 0;
 }

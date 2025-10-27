@@ -10,6 +10,7 @@ import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS, ROUTES } from '../Utils/Constan
 import axios from 'axios';
 import { FaPlus } from "react-icons/fa6";
 import { IApiResponse } from '../Interfaces/IApiResponse';
+import UserScorecardBravo from '../Components/UserScorecardBravo';
 
 
 export default function ScoreFight() {
@@ -162,11 +163,11 @@ export default function ScoreFight() {
             ScoreFight
             <div className='mx-auto' style={{ maxWidth: '90%' }}>
                 <FadeInSection>
-                    <UserScorecard isActive={false} scorecard={location.state.scorecard} />
+                    <UserScorecardBravo isActive={false} scorecard={location.state.scorecard} />
                 </FadeInSection>
-                <FadeInSection>
+                {/* <FadeInSection>
                   <CommentsForScorecard fighterAName={fighterA.firstname + ' ' + fighterA.lastname} fighterBName={fighterB.firstname + ' ' + fighterB.lastname} scorecard={location.state.scorecard} />
-                </FadeInSection>
+                </FadeInSection> */}
             </div>
             <FadeInSection>
                 <ScoreRound handleScoreRound={submitScore} fighterA={fighterA} fighterB={fighterB} scorecard={scorecard} round={activeRound} />
