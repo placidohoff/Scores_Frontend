@@ -11,169 +11,200 @@ import axios from 'axios';
 import { FaPlus } from "react-icons/fa6";
 import { IApiResponse } from '../Interfaces/IApiResponse';
 import UserScorecardBravo from '../Components/UserScorecardBravo';
+import { useAuth } from '../Context/auth';
 
 
 export default function ScoreFight() {
-    const location = useLocation()
-    const { ctxFighters, ctxBoxingMatches } = useData()
+  const location = useLocation()
+  const { ctxFighters, ctxBoxingMatches } = useData()
+  const { auth } = useAuth()
 
 
 
-    const [scorecard, setScorecard] = useState<IScorecard>(location.state.scorecard)
-    const [rounds, setRounds] = useState<IRound[]>(location.state.rounds)
-    const [activeRound, setActiveRound] = useState<IRound>()
-    const [fighterA, setFighterA] = useState<IFighter>(location.state.fighterA)
-    const [fighterB, setFighterB] = useState<IFighter>(location.state.fighterB)
-    const [boxingMatch, setBoxingMatch] = useState<IBoxingMatch>()
-    const [roundScoreCount, setRoundScoreCount] = useState(0)
-    const navigate = useNavigate()
-    // console.log(scorecard)
+  const [scorecard, setScorecard] = useState<IScorecard>(location.state.scorecard)
+  const [rounds, setRounds] = useState<IRound[]>(location.state.rounds)
+  const [activeRound, setActiveRound] = useState<IRound>()
+  const [fighterA, setFighterA] = useState<IFighter>(location.state.fighterA)
+  const [fighterB, setFighterB] = useState<IFighter>(location.state.fighterB)
+  const [boxingMatch, setBoxingMatch] = useState<IBoxingMatch>()
+  const [roundScoreCount, setRoundScoreCount] = useState(0)
+  const navigate = useNavigate()
+  // console.log(scorecard)
 
-    const API_BASE_URL =
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
-            ? API_ROOTS.DEV
-            : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
-                ? API_ROOTS.PROD
-                : API_ROOTS.WORK
+  const API_BASE_URL =
+    process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+      ? API_ROOTS.DEV
+      : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
+        ? API_ROOTS.PROD
+        : API_ROOTS.WORK
 
-    const API_ENDPOINT_ROUNDS =
-        process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
-            ? API_ENDPOINTS.ROUNDS.DEV
-            : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
-                ? API_ENDPOINTS.ROUNDS.PROD
-                : API_ENDPOINTS.ROUNDS.WORK
+  const API_ENDPOINT_ROUNDS =
+    process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+      ? API_ENDPOINTS.ROUNDS.DEV
+      : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
+        ? API_ENDPOINTS.ROUNDS.PROD
+        : API_ENDPOINTS.ROUNDS.WORK
 
-    useEffect(() => {
-        // console.log(location.state, 'STATE')
-        setScorecard(location.state.scorecard)
-        findActiveRound();
-        findActiveFighters();
+  const API_ENDPOINT_COMMENTS =
+    process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
+      ? API_ENDPOINTS.COMMENTS.DEV
+      : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
+        ? API_ENDPOINTS.COMMENTS.PROD
+        : API_ENDPOINTS.COMMENTS.WORK
 
-    }, [])
+  useEffect(() => {
+    // console.log(location.state, 'STATE')
+    setScorecard(location.state.scorecard)
+    findActiveRound();
+    findActiveFighters();
 
-    useEffect(() => {
-        //TODO: GET UPDATED ROUNDS FROM DB
-        const getUpdates = async () => {
-            const data:IApiResponse<IRound[]>  = await axios.get(API_BASE_URL + API_ENDPOINT_ROUNDS)
+  }, [])
 
-            setRounds(data.result)
+  useEffect(() => {
+    //TODO: GET UPDATED ROUNDS FROM DB
+    const getUpdates = async () => {
+      const data: IApiResponse<IRound[]> = await axios.get(API_BASE_URL + API_ENDPOINT_ROUNDS)
 
-            // const roundsForThisCard = rounds.filter(r => r.scorecard_ID === scorecard.scorecard_ID)
-            
-            // navigate(ROUTES.SCORE_FIGHT, {
-            //     state: { scorecard: scorecard, rounds: roundsForThisCard, fighterA: fighterA, fighterB: fighterB }
+      setRounds(data.result)
 
-            // })
-            // window.location.reload()
-        }
+      // const roundsForThisCard = rounds.filter(r => r.scorecard_ID === scorecard.scorecard_ID)
 
-        getUpdates()
-        findActiveRound()
-        //SET THE NEW ACTIVE ROUND
-    }, [roundScoreCount])
+      // navigate(ROUTES.SCORE_FIGHT, {
+      //     state: { scorecard: scorecard, rounds: roundsForThisCard, fighterA: fighterA, fighterB: fighterB }
 
-    const handleSubmitScore = () => {
-        //POST ROUND TO THE "PUT" ENDPOINT
-        //INCREMENT THE "ACTIVEROUND" STATE, PASS IT TO THE SCORE-ROUND-COMPONENT AND RE-RENDER
+      // })
+      // window.location.reload()
     }
 
-    const submitScore = async (fighterAScore: string, fighterBScore: string, comments: string) => {
-        // alert('testing...')    
-        try {
-            const data = new FormData();
-            data.append("Scorecard_ID", String(scorecard.scorecard_ID));
-            data.append("RoundNumber", String(activeRound?.roundNumber ?? 1));
-            data.append("FighterA_ID", String(activeRound?.fighterA_ID ?? ''));
-            data.append("FighterB_ID", String(activeRound?.fighterB_ID ?? ''));
-            data.append("FighterA_Score", fighterAScore);
-            data.append("FighterB_Score", fighterBScore);
-            data.append("Comments", comments ?? '');
+    getUpdates()
+    findActiveRound()
+    //SET THE NEW ACTIVE ROUND
+  }, [roundScoreCount])
 
-            const response = await axios.put(API_BASE_URL + API_ENDPOINT_ROUNDS, data, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            })
+  const handleSubmitScore = () => {
+    //POST ROUND TO THE "PUT" ENDPOINT
+    //INCREMENT THE "ACTIVEROUND" STATE, PASS IT TO THE SCORE-ROUND-COMPONENT AND RE-RENDER
+  }
 
-            if (response.data.isSuccess) {
-                console.log('Round updated successfully:', response.data.result);
-                //Increment to re-render what is needed:
-                setRoundScoreCount(roundScoreCount + 1)
-                window.location.reload()
+  const submitScore = async (fighterAScore: string, fighterBScore: string, comments: string) => {
+    // alert('testing...')    
+    try {
+      //COMMENTS ENDPOINT
+      if (comments && comments.trim().length > 0) {
+        let data = new FormData();
+        data.append("Round_ID", String(activeRound?.round_ID));
+        data.append("User_ID", String(auth.id));
+        data.append("Thoughts", comments);
+        data.append("RoundNumber", String(activeRound?.roundNumber))
 
-            } else {
-                console.error('Error updating round:', response.data.message);
-            }
-        } catch (error) {
-            console.error('PUT request failed:', error);
-        }
-
-    }
-
-    const findActiveFighters = () => {
-        ctxBoxingMatches.some(b => {
-            // console.log(b.boxingMatch_ID, 'BID', scorecard.boxingMatch_ID)
-            if (b.boxingMatch_ID === scorecard.boxingMatch_ID) {
-                // console.log('FOUND?')
-                setBoxingMatch(b)
-                return true
-            }
-        })
-        ctxFighters.some(f => {
-            if (f.fighter_ID == boxingMatch?.fighterA_ID) {
-                setFighterA(f)
-                return true
-            }
+        const commentResponse = await axios.post(API_BASE_URL + API_ENDPOINT_COMMENTS, data, {
+          headers: { 'Content-Type': 'multipart/form-data' },
         })
 
-        ctxFighters.some(f => {
-            if (f.fighter_ID == boxingMatch?.fighterB_ID) {
-                setFighterB(f)
-                return true
-            }
-        })
-
-        // console.log(boxingMatch, 'MATCH')
-
-    }
-
-    const findActiveRound = async () => {
-
-        const data  = await axios.get(API_BASE_URL + API_ENDPOINT_ROUNDS)
-
-        // console.log(data.data.result, 'FINDING')
-
-        let roundsFromDB:IRound[] = data.data.result
-
-        let roundsForThisCard = roundsFromDB.filter(r => r.scorecard_ID === scorecard.scorecard_ID)
-
-        if (roundsForThisCard) {
-            roundsForThisCard.sort((a, b) => a.roundNumber - b.roundNumber)
-            roundsForThisCard.some(r => {
-                if (!r.isScored) {
-                    setActiveRound(r)
-                    return true
-                }
-            })
+        if(commentResponse.data.isSuccess){
+          console.log('Comment aded sucessfully', commentResponse.data.result)
+        }else{
+          console.error('Error updating comments:', commentResponse.data.message);
         }
+      }
 
+      //ROUND ENDPOINT
+      let data = new FormData();
+      data.append("Scorecard_ID"
+        , String(scorecard.scorecard_ID));
+      data.append("RoundNumber", String(activeRound?.roundNumber ?? 1));
+      data.append("FighterA_ID", String(activeRound?.fighterA_ID ?? ''));
+      data.append("FighterB_ID", String(activeRound?.fighterB_ID ?? ''));
+      data.append("FighterA_Score", fighterAScore);
+      data.append("FighterB_Score", fighterBScore);
+      // data.append("Comments", comments ?? '');
+
+      const response = await axios.put(API_BASE_URL + API_ENDPOINT_ROUNDS, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+
+      if (response.data.isSuccess) {
+        console.log('Round updated successfully:', response.data.result);
+        //Increment to re-render what is needed:
+        setRoundScoreCount(roundScoreCount + 1)
+        window.location.reload()
+
+      }
+      else {
+        console.error('Error updating round:', response.data.message);
+      }
+    } catch (error) {
+      console.error('PUT request failed:', error);
     }
 
+  }
 
-    return (
-        <div>
-            ScoreFight
-            <div className='mx-auto' style={{ maxWidth: '90%' }}>
-                <FadeInSection>
-                    <UserScorecardBravo isActive={false} scorecard={location.state.scorecard} />
-                </FadeInSection>
-                {/* <FadeInSection>
+  const findActiveFighters = () => {
+    ctxBoxingMatches.some(b => {
+      // console.log(b.boxingMatch_ID, 'BID', scorecard.boxingMatch_ID)
+      if (b.boxingMatch_ID === scorecard.boxingMatch_ID) {
+        // console.log('FOUND?')
+        setBoxingMatch(b)
+        return true
+      }
+    })
+    ctxFighters.some(f => {
+      if (f.fighter_ID == boxingMatch?.fighterA_ID) {
+        setFighterA(f)
+        return true
+      }
+    })
+
+    ctxFighters.some(f => {
+      if (f.fighter_ID == boxingMatch?.fighterB_ID) {
+        setFighterB(f)
+        return true
+      }
+    })
+
+    // console.log(boxingMatch, 'MATCH')
+
+  }
+
+  const findActiveRound = async () => {
+
+    const data = await axios.get(API_BASE_URL + API_ENDPOINT_ROUNDS)
+
+    // console.log(data.data.result, 'FINDING')
+
+    let roundsFromDB: IRound[] = data.data.result
+
+    let roundsForThisCard = roundsFromDB.filter(r => r.scorecard_ID === scorecard.scorecard_ID)
+
+    if (roundsForThisCard) {
+      roundsForThisCard.sort((a, b) => a.roundNumber - b.roundNumber)
+      roundsForThisCard.some(r => {
+        if (!r.isScored) {
+          setActiveRound(r)
+          return true
+        }
+      })
+    }
+
+  }
+
+
+  return (
+    <div>
+      ScoreFight
+      <div className='mx-auto' style={{ maxWidth: '90%' }}>
+        <FadeInSection>
+          <UserScorecardBravo isActive={false} scorecard={location.state.scorecard} />
+        </FadeInSection>
+        {/* <FadeInSection>
                   <CommentsForScorecard fighterAName={fighterA.firstname + ' ' + fighterA.lastname} fighterBName={fighterB.firstname + ' ' + fighterB.lastname} scorecard={location.state.scorecard} />
                 </FadeInSection> */}
-            </div>
-            <FadeInSection>
-                <ScoreRound handleScoreRound={submitScore} fighterA={fighterA} fighterB={fighterB} scorecard={scorecard} round={activeRound} />
-            </FadeInSection>
-        </div>
-    )
+      </div>
+      <FadeInSection>
+        <ScoreRound handleScoreRound={submitScore} fighterA={fighterA} fighterB={fighterB} scorecard={scorecard} round={activeRound} />
+      </FadeInSection>
+    </div>
+  )
 }
 
 /* VERSION WITH THE UPDATES WORKING VIA CHAT GPT BUT GAVE ERRORS WHEN CREATING A NEW CARD 
