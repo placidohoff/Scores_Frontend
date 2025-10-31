@@ -87,8 +87,8 @@ export default function CreateScorecard() {
           boxingMatchID
         }
       });
-      
-      
+
+
     } catch (error) {
       console.error(error);
       console.log(data, "SENT")
@@ -107,10 +107,17 @@ export default function CreateScorecard() {
 
   return (
     <div>
-      <h1>Create Scorecard</h1>
-      <p>Match: {fighterAName} vs {fighterBName}</p>
-      {/* {boxingMatchID && <p>Match ID: {boxingMatchID}</p>} */}
-      <button onClick={(e) => handleSubmit(e)}>Begin Scoring</button>
+      <div className="back-color-box mx-auto mt-4 border-20" style={{width: '85%'}}>
+        <h1>Create Scorecard</h1>
+        <b>{fighterAName} vs {fighterBName}</b>
+        {/* {boxingMatchID && <p>Match ID: {boxingMatchID}</p>} */}
+        <p style={{ color: "#fff" }}>Your account does not yet have a scorecard for this fight. Create one now.</p>
+
+        <div style={{maxWidth: "250px"}} className="d-flex flex-column mx-auto">
+          <button className="btn btn-gold my-2" onClick={(e) => handleSubmit(e)}>Create Scorecard</button>
+          <button className="btn btn-danger my-2" onClick={(e) => handleSubmit(e)}>Cancel</button>
+        </div>
+      </div>
       <p>{status}</p>
     </div>
   );
