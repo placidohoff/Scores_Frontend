@@ -23,13 +23,13 @@ const CreateBoxingMatch = () => {
         ? API_ENDPOINTS.FIGHTERS.DEV
         : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
             ? API_ENDPOINTS.FIGHTERS.PROD
-            : API_ENDPOINTS.FIGHTERS.PROD
+            : API_ENDPOINTS.FIGHTERS.WORK
 
     const API_ENDPOINT_MATCHES = process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
         ? API_ENDPOINTS.BOXING_MATCHES.DEV
         : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
             ? API_ENDPOINTS.BOXING_MATCHES.PROD
-            : API_ENDPOINTS.BOXING_MATCHES.PROD
+            : API_ENDPOINTS.BOXING_MATCHES.WORK
 
     useEffect(() => {
         const getFighters = async () => {

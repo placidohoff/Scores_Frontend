@@ -13,7 +13,7 @@ interface LoginResponse {
   id: string;
 }
 
-interface JwtPayload{
+interface JwtPayload {
   displayName: string;
   email: string;
   exp: number;
@@ -27,54 +27,103 @@ const API_BASE_URL =
   process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.DEV
     ? API_ROOTS.DEV
     : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
-    ? API_ROOTS.PROD
-    : API_ROOTS.WORK;
+      ? API_ROOTS.PROD
+      : API_ROOTS.WORK;
 
 export const LoginLogic = async (
   model: LoginRequest
 ): Promise<LoginResponse> => {
-  try {
-    const formData = new FormData();
-    formData.append("DisplayName", model.displayName);
-    formData.append("Password", model.password);
+  if (process.env.REACT_APP_ENVIRONMENT === "work_domain") {
+    try {
+      // fetch JSON file from public folder
+      const response = await fetch("/Data/Users.json");
+      const data = await response.json();
 
-    // ✅ Make sure there's a "/" before "api"
-    const response = await axios.post(
-      `${API_BASE_URL}Auth/login`,
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
+      if (!data.result || !Array.isArray(data.result)) {
+        throw new Error("Invalid user data format");
       }
-    );
 
-    console.log("API response:", response.data);
+      // find user that matches the displayName and password (mock validation)
+      const foundUser = data.result.find(
+        (user: any) =>
+          user.displayName === model.displayName &&
+          model.password === "123456"
+      );
 
-    const data = response.data;
-    if (!data.isSuccess) {
-      throw new Error(data.errorMessages?.[0] || "Login failed");
+      if (!foundUser) {
+        throw new Error("Invalid username or password");
+      }
+
+      // fake token for mock environment
+      const mockToken = btoa(
+        JSON.stringify({
+          id: foundUser.id,
+          displayName: foundUser.displayName,
+          role: "User",
+          email: foundUser.email,
+        })
+      );
+
+      const payload: LoginResponse = {
+        id: foundUser.id,
+        displayName: foundUser.displayName,
+        token: mockToken,
+      };
+
+      localStorage.setItem("token", payload.token);
+      localStorage.setItem("displayName", payload.displayName);
+
+      return payload;
+    } catch (err: any) {
+      console.error("Local login error:", err);
+      throw new Error(err.message || "Login failed");
     }
 
-    const result = data.result;
-    localStorage.setItem("token", result.token);
-    localStorage.setItem("displayName", result.displayName);
+  } else {
+    try {
+      const formData = new FormData();
+      formData.append("DisplayName", model.displayName);
+      formData.append("Password", model.password);
 
-    const decoded = jwtDecode<JwtPayload>(result.token)
-    console.log(decoded, 'DECODED')
+      // ✅ Make sure there's a "/" before "api"
+      const response = await axios.post(
+        `${API_BASE_URL}Auth/login`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
-    const payload = {
-    id: decoded.id,
-    displayName: decoded.displayName,
-    role: decoded.role,
-    token: result.token
-  };
+      console.log("API response:", response.data);
 
-    return payload;
-  } catch (err: any) {
-    console.error("Login error:", err.response?.data || err.message);
-    throw new Error(
-      err.response?.data?.errorMessages?.[0] ||
+      const data = response.data;
+      if (!data.isSuccess) {
+        throw new Error(data.errorMessages?.[0] || "Login failed");
+      }
+
+      const result = data.result;
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("displayName", result.displayName);
+
+      const decoded = jwtDecode<JwtPayload>(result.token)
+      console.log(decoded, 'DECODED')
+
+      const payload = {
+        id: decoded.id,
+        displayName: decoded.displayName,
+        role: decoded.role,
+        token: result.token
+      };
+
+      return payload;
+    } catch (err: any) {
+      console.error("Login error:", err.response?.data || err.message);
+      throw new Error(
+        err.response?.data?.errorMessages?.[0] ||
         err.message ||
         "An error occurred during login"
-    );
+      );
+    }
   }
+
 };

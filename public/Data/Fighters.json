@@ -33,15 +33,29 @@
     },
     {
       "fighter_ID": 8,
-      "firstname": null,
-      "lastname": null,
+      "firstname": "Gervonta",
+      "lastname": "Davis",
       "matchesAsFighterA": null,
       "matchesAsFighterB": null
     },
     {
       "fighter_ID": 9,
-      "firstname": null,
-      "lastname": null,
+      "firstname": "Jake",
+      "lastname": "Paul",
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
+    },
+    {
+      "fighter_ID": 10,
+      "firstname": "Ray",
+      "lastname": "Leonard",
+      "matchesAsFighterA": null,
+      "matchesAsFighterB": null
+    },
+    {
+      "fighter_ID": 11,
+      "firstname": "Thomas",
+      "lastname": "Hearns",
       "matchesAsFighterA": null,
       "matchesAsFighterB": null
     }
