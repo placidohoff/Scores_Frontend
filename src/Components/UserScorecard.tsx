@@ -102,7 +102,6 @@ export default function UserScorecard({ scorecard, isActive }: Props) {
 
   return (
     <div
-      onClick={() => scoreFight(scorecard.scorecard_ID)}
       style={{ width: "90%" }}
       className={`userScorecard mb-2 d-flex justify-content-center mx-auto ${
     isActive ? "active" : ""
@@ -111,6 +110,7 @@ export default function UserScorecard({ scorecard, isActive }: Props) {
       <div
         className="d-flex flex-column mx-3 userScorecardScores"
         style={{ border: "1px solid" }}
+        onClick={() => scoreFight(scorecard.scorecard_ID)}
       >
         <div style={{ border: "1px solid" }}>
           <span>&nbsp;</span>
