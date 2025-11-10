@@ -21,6 +21,11 @@ export default function ScoreRound(props: IScoreRoundsProps) {
     const [fighterBScore, setFighterBScore] = useState<string>('10')
     const [comments, setComments] = useState<string>()
     const [isPosted, setIsPosted] = useState(false)
+    const [isFighterADefeated, setIsFighterADefeated] = useState(false)
+    const [isFighterAWon, setIsFighterAWon] = useState(false)
+    const [isFighterBDefeated, setIsFighterBDefeated] = useState(false)
+    const [isFighterBWon, setIsFighterBWon] = useState(false)
+    const [isFightOver, setIsFightOver] = useState(false)
 
     useEffect(() => {
 
@@ -88,9 +93,15 @@ export default function ScoreRound(props: IScoreRoundsProps) {
 
     const scoreUp = (id: string) => {
 
+        setIsFightOver(false)
+
         if (id == "scoreA") {
+            setIsFighterADefeated(false)
+            setIsFighterBWon(false)
             let score = Number.parseInt(fighterAScore) + 1;
-            if (score > 10) score = 10
+            if (score > 10){
+                
+            } score = 10
             setFighterAScore(score.toString())
         }
         else if (id == "scoreB") {
@@ -104,13 +115,35 @@ export default function ScoreRound(props: IScoreRoundsProps) {
 
         if (id == "scoreA") {
             let score = Number.parseInt(fighterAScore) - 1;
-            if (score < 6) score = 6
-            setFighterAScore(score.toString())
+            if (score < 6) {
+                score = 5
+
+                setIsFighterADefeated(true)
+                setIsFighterBWon(true)
+                setIsFightOver(true)
+                // setFighterAScore('DEF') //MUST MAKE THE TEXT BOX APPEAR INSTEAD OF THE NUMBER BOX TO PUT THE 'DEF'
+            } else {
+                setIsFighterADefeated(false)
+                setIsFighterBWon(false)
+                setIsFightOver(false)
+                setFighterAScore(score.toString())
+            }
+
+
         }
         else if (id == "scoreB") {
             let score = Number.parseInt(fighterBScore) - 1;
-            if (score < 6) score = 6
-            setFighterBScore(score.toString())
+            if (score < 6) {
+                {
+                    score = 5
+
+                    setIsFighterBDefeated(true)
+                    setIsFighterAWon(true)
+                    setIsFightOver(true)
+                    setFighterBScore('DEF')
+                }
+                setFighterBScore(score.toString())
+            }
         }
     }
 
@@ -126,7 +159,12 @@ export default function ScoreRound(props: IScoreRoundsProps) {
                             <p className='mx-2 mb-0'>{fighterA?.firstname + ' ' + fighterA?.lastname}:</p>
                         </div>
                         <div>
-                            <input className='score-round-input' value={fighterAScore} onChange={(e) => handleChangeScore(e, 'scoreA')} type="number" />
+                            {
+                                !isFightOver && <input id='figherATextBox' className='score-round-input' value={fighterAScore} onChange={(e) => handleChangeScore(e, 'scoreA')} type="number" />
+
+                            }                            {
+                                isFighterADefeated && <input className='score-round-input' value={"DEF"} onChange={(e) => handleChangeScore(e, 'scoreA')} type="string" />
+                            }
                         </div>
                         <span onClick={() => scoreDown('scoreA')} className='score-up-down'><i className="bi bi-dash"></i></span>
                         <span onClick={() => scoreUp('scoreA')} className="score-up-down"><i className="bi bi-plus"></i></span>
@@ -147,7 +185,9 @@ export default function ScoreRound(props: IScoreRoundsProps) {
                     <textarea style={{ width: '24vw', height: '16vh' }} className='mb-4 mx-auto' name="comment" id="comment" value={comments} onChange={(e => setComments(e.target.value))}></textarea>
                 </div>
                 <button className='py-2 btn btn-gold' style={{ width: "88%", marginLeft: 'auto' }} onClick={() => handleScoreRound(fighterAScore, fighterBScore, comments)}>Submit Score</button>
-
+                {isFightOver &&
+                    <button className='py-2 btn btn-gold' style={{ width: "88%", marginLeft: 'auto' }} onClick={() => handleScoreRound(fighterAScore, fighterBScore, comments)}>End Scorecard</button>
+                }
                 {/* <button>Submit Score</button> */}
             </div>
         </div>
