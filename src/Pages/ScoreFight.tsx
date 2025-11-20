@@ -6,7 +6,7 @@ import { IRound } from '../Interfaces/IRound';
 import { useData } from '../Context/data';
 import { IBoxingMatch } from '../Interfaces/IBoxingMatch';
 import { IFighter } from '../Interfaces/IFighter';
-import { API_ENDPOINTS, API_ROOTS, ENVIRONMENTS, ROUTES } from '../Utils/Constants';
+import { API_ENDPOINTS, API_ROOTS, EARLY_STOP_RESULT, ENVIRONMENTS, ROUTES } from '../Utils/Constants';
 import axios from 'axios';
 import { FaPlus } from "react-icons/fa6";
 import { IApiResponse } from '../Interfaces/IApiResponse';
@@ -133,6 +133,12 @@ export default function ScoreFight() {
       else {
         console.error('Error updating round:', response.data.message);
       }
+
+      //TODO: If the fighter A or B score is 100 or -100, this indicates that the fight was stopped early.
+      if(fighterAScore === "Win" || fighterBScore === "Def"){
+       //HIT API ENDPOINT TO DELETE THE REST OF THE ROUNDS OF SCORECARDS THAT ARE GOING UNUSED: 
+      }
+
     } catch (error) {
       console.error('PUT request failed:', error);
     }

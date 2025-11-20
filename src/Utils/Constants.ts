@@ -71,3 +71,12 @@ export const API_ENDPOINTS = {
         ROUNDS: 'majority_decision_rounds',
         SCORECARDS: 'majority_decision_scorecards'
     }
+
+
+export const EARLY_STOP_RESULT = {
+    FIGHTER_A: "Fighter_A",
+    FIGHTER_B: "Fighter_B",
+    FOUL_DAMAGE: "Foul_Damage",
+    NO_CONTEST: "No_Contest"
+
+}
