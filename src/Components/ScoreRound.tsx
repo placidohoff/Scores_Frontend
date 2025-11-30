@@ -239,7 +239,7 @@ export default function ScoreRound(props: IScoreRoundsProps) {
                     isFightOver &&
                     <>
                         <button className='py-2 btn btn-gold mx-auto' style={{ width: "88%", marginLeft: 'auto' }} onClick={() => handleScoreRound(fighterAScore, fighterBScore, comments)}>Submit Score</button>
-                        <button className='py-2 btn btn-danger mt-2 mx-auto' style={{ width: "50%", marginLeft: 'auto' }} onClick={() => setShowModal(true)}>Cancel</button>
+                        <button className='py-2 btn btn-danger mt-2 mx-auto' style={{ width: "50%", marginLeft: 'auto' }} onClick={() => setIsFightOver(false)}>Cancel</button>
                     </>
                 }
 

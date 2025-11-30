@@ -51,6 +51,9 @@ export default function ScoreFight() {
       : process.env.REACT_APP_ENVIRONMENT === ENVIRONMENTS.PROD
         ? API_ENDPOINTS.COMMENTS.PROD
         : API_ENDPOINTS.COMMENTS.WORK
+  
+  const API_ENDPOINT_SCORECARDS = API_ENDPOINTS.SCORECARDS.FINALIZE
+      
 
   useEffect(() => {
     // console.log(location.state, 'STATE')
@@ -135,13 +138,28 @@ export default function ScoreFight() {
       }
 
       //TODO: If the fighter A or B score is 100 or -100, this indicates that the fight was stopped early.
-      if(fighterAScore === "Win" || fighterBScore === "Def"){
+      if(fighterAScore === "Win" || fighterBScore === "Def")
+        endScorecard();
        //HIT API ENDPOINT TO DELETE THE REST OF THE ROUNDS OF SCORECARDS THAT ARE GOING UNUSED: 
-      }
+
+      //  const endScorecardResponse = await axios.post(API_BASE_URL + API_ENDPOINT_SCORECARDS, data, {
+      //     headers: { 'Content-Type': 'multipart/form-data' },
+      //   })
+
+      //   if(deleteUnusedRoundsResponse.data.isSuccess){
+      //     console.log('Comment aded sucessfully', commentResponse.data.result)
+      //   }else{
+      //     console.error('Error updating comments:', commentResponse.data.message);
+      //   }
+      // }
 
     } catch (error) {
       console.error('PUT request failed:', error);
     }
+
+  }
+
+  const endScorecard = () => {
 
   }
 

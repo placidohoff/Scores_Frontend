@@ -43,7 +43,8 @@ export const API_ENDPOINTS = {
     SCORECARDS: {
         DEV: 'Scorecard',
         WORK: 'Scorecards.json',
-        PROD: ''
+        PROD: '',
+        FINALIZE: 'Scorecards/end-scorecard'
     },
     AUTH:{
         DEV: 'Auth',
@@ -54,7 +55,7 @@ export const API_ENDPOINTS = {
         DEV: 'Round',
         WORK: 'Rounds.json',
         PROD: '',
-        CREATE_ROUNDS_DEV: 'Round/create-rounds'
+        CREATE_ROUNDS_DEV: 'Round/create-rounds',
     },
     COMMENTS:{
         DEV: 'Comment',
