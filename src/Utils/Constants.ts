@@ -44,7 +44,7 @@ export const API_ENDPOINTS = {
         DEV: 'Scorecard',
         WORK: 'Scorecards.json',
         PROD: '',
-        FINALIZE: 'Scorecards/end-scorecard'
+        FINALIZE: 'Scorecard/stop-scorecard'
     },
     AUTH:{
         DEV: 'Auth',
@@ -79,5 +79,13 @@ export const EARLY_STOP_RESULT = {
     FIGHTER_B: "Fighter_B",
     FOUL_DAMAGE: "Foul_Damage",
     NO_CONTEST: "No_Contest"
+
+}
+
+export const TOKENS = {
+    WIN_NUMBER: 99,
+    LOSE_NUMBER: -99,
+    WIN_STRING: "Win",
+    LOSE_STRING: "Def"
 
 }

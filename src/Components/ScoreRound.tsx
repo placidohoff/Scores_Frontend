@@ -165,11 +165,11 @@ export default function ScoreRound(props: IScoreRoundsProps) {
         setIsFightOver(true)
         setShowModal(false)
 
-        if(earlyFinishResult === "FigherA"){
+        if(earlyFinishResult === EARLY_STOP_RESULT.FIGHTER_A){
             setFighterAScore("Win");
             setFighterBScore("Def");
         }
-        if(earlyFinishResult === "FigherB"){
+        if(earlyFinishResult === EARLY_STOP_RESULT.FIGHTER_B){
             setFighterAScore("Def");
             setFighterBScore("Win");
         }

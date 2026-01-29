@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { IRound } from '../Interfaces/IRound'
 import { useData } from '../Context/data'
 import { IComment } from '../Interfaces/IComment'
+import { TOKENS } from '../Utils/Constants'
 
 interface Props {
     round: IRound
@@ -40,8 +41,40 @@ export default function RoundScoresAndComment(props: Props) {
                     {round.roundNumber}
                 </p>
             )}
-            <p>{round.isScored ? round.fighterA_Score : ' --- '}</p>
-            <p>{round.isScored ? round.fighterB_Score : ' --- '}</p>
+            
+            <p
+                style={{
+                    color: round.fighterA_Score === TOKENS.WIN_NUMBER || round.fighterA_Score === TOKENS.LOSE_NUMBER
+                    ? 'gold'
+                    : 'inherit'
+                }}
+            >
+                {round.isScored
+                    ? round.fighterA_Score === TOKENS.WIN_NUMBER
+                        ? 'Win'
+                        : round.fighterA_Score === TOKENS.LOSE_NUMBER
+                            ? 'Def'
+                            : round.fighterA_Score
+                    : ' --- '}
+            </p>
+
+            <p
+                style={{
+                    color: round.fighterA_Score === TOKENS.WIN_NUMBER || round.fighterA_Score === TOKENS.LOSE_NUMBER
+                    ? 'gold'
+                    : 'inherit'
+                }}
+            >
+                {round.isScored
+                    ? round.fighterB_Score === TOKENS.WIN_NUMBER
+                        ? 'Win'
+                        : round.fighterB_Score === TOKENS.LOSE_NUMBER
+                            ? 'Def'
+                            : round.fighterB_Score
+                    : ' --- '}
+            </p>
+
+
 
             {isRoundComment && isBravo && (
                 <p

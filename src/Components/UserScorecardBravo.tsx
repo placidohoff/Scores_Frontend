@@ -1,3 +1,7 @@
+/*
+TODO: Line 137, Render the scorecard rounds taking into account if the WIN/LOSS tokens are used.
+*/
+
 import { useEffect, useState } from "react";
 import { IScorecard } from "../Interfaces/IScorecard";
 import { useData } from "../Context/data";
@@ -134,6 +138,10 @@ export default function UserScorecardBravo({ scorecard, isActive }: Props) {
               {fighterB?.firstname} {fighterB?.lastname}
             </p>
           </div>
+          {/* RENDER EACH ROUND SCORES FOR BOTH FIGHTERS */}
+          {/* 
+           
+          */}
           <div className="d-flex">
             {roundsForThisCard?.map((r) => (
               <RoundScoresAndComment isBravo={true} key={r.round_ID} round={r} />
